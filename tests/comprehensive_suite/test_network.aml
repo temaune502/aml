@@ -1,0 +1,36 @@
+var std = import("temaune/std")
+
+std.print("=== Тестування мережевих функцій ===")
+
+// Локальна мережа
+var host = std.net.hostname()
+var ip = std.net.local_ip()
+
+std.print("Hostname: " + host)
+std.print("Local IP: " + ip)
+
+// HTTP GET (тестуємо на публічному API, якщо є інтернет)
+std.print("\n--- HTTP GET test (icanhazip.com) ---")
+var res = std.http.get("http://icanhazip.com")
+
+if (res.status == 200) {
+    std.print("Public IP: " + res.body)
+} else {
+    std.print("HTTP Error: " + res.error)
+}
+
+std.print("\n--- Local scan test (localhost) ---")
+var port80 = std.net.check_port("127.0.0.1", 80, 0.5)
+std.print("Port 80 is open: " + str(port80))
+
+var common_ports = [80, 443, 8080, 3000]
+std.print("Scanning some common ports on localhost...")
+for (p in common_ports) {
+    if (std.net.check_port("127.0.0.1", p, 0.1)) {
+        std.print("Found open port: " + str(p))
+    }
+}
+
+std.print("FQDN: " + std.net.fqdn())
+
+std.print("\n=== Тест завершено ===")

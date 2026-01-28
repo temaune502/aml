@@ -1,0 +1,19 @@
+import_py { 
+  numpy as np,
+  pathlib,
+  builtins
+}
+
+meta { entry: "app.main" }
+
+namespace app {
+  func main() {
+    var a = np.array([1, 2, 3, 4], np.float32)
+    var b = np.array([10, 20, 30, 40], dtype=np.float32)
+    var dot = np.dot(a, b).item()
+
+    var p = pathlib.Path("./tmp_aml")
+
+    p.joinpath("numpy.txt").write_text(builtins.str(dot), "utf-8")
+  }
+}

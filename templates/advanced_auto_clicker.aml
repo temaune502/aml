@@ -1,0 +1,31 @@
+// Шаблон: Періодичний клікер
+// Виконує клік у поточній позиції мишки кожні N секунд.
+
+import_py {
+  console,
+  plugins\pro_automation,
+  base
+}
+namespace auto_clicker {
+  var interval_sec = 10  // Інтервал між кліками
+  var clicks_per_cycle = 1 // Кількість кліків за один цикл
+
+  func main() {
+    console.print_line("Запуск Auto Clicker... Інтервал: " + interval_sec + " сек.")
+    while (True) {
+      console.print_colored("Початок циклу кліків...", "green")
+      
+      // Використовуємо цикл for для лічильника — це надійніше та чистіше
+      for i in 0..clicks_per_cycle {
+        console.print_line("  Клік " + (i + 1) + " з " + clicks_per_cycle)
+        pro_automation.click()
+        base.wait(0.1)
+      }
+      
+      console.print_colored("Чекаю " + interval_sec + " секунд...", "yellow")
+      base.wait(interval_sec)
+    }
+  }
+}
+
+auto_clicker.main()

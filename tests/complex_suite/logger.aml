@@ -1,0 +1,33 @@
+import_py { console }
+
+namespace Log {
+    var log_level = "INFO"
+    var logs = []
+
+    func info(msg) {
+        var entry = "[INFO] " + msg
+        console.print_line(entry)
+        _add_log(entry)
+    }
+
+    func error(msg) {
+        var entry = "[ERROR] " + msg
+        console.print_line(entry)
+        _add_log(entry)
+    }
+
+    func debug(msg) {
+        if (log_level == "DEBUG") {
+            var entry = "[DEBUG] " + msg
+            console.print_line(entry)
+            _add_log(entry)
+        }
+    }
+    
+    func _add_log(entry) {
+        // Simple mock to keep last 10 logs
+        // Assuming list append works
+        // logs.append(entry) - needs base import or list method
+        // For now just print
+    }
+}

@@ -1,0 +1,19 @@
+// Шаблон: Дата та час
+
+import_py {
+  console,
+  plugins\datetime
+}
+
+namespace dt_demo {
+  func main() {
+    console.print_line("ISO (UTC): " + datetime.now_iso())
+    console.print_line("Timestamp: " + datetime.timestamp())
+    console.print_line("Локальний час: " + datetime.format_now("%Y-%m-%d %H:%M:%S"))
+
+    var ts = 1700000000
+    console.print_line("Форматований timestamp: " + datetime.format_timestamp(ts, "%d.%m.%Y %H:%M"))
+  }
+}
+
+dt_demo.main()

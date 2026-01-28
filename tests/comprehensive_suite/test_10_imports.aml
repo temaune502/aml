@@ -1,0 +1,10 @@
+var lib_math = import("lib_math")
+
+print("--- Module Import Test ---")
+print("Math E:", lib_math.math.E)
+print("Square of 4:", lib_math.math.square(4))
+print("Cube of 3:", lib_math.math.cube(3))
+
+// Testing if we can re-import (should be cached)
+import_aml { lib_math }
+print("Re-import successful (cached)")

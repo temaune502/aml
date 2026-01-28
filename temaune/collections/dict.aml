@@ -1,0 +1,46 @@
+// Модуль для роботи зі словниками
+import_py { base }
+
+// Повертає список ключів словника
+func keys(d) {
+    return base.dict_keys(d)
+}
+
+// Повертає список значень словника
+func values(d) {
+    return base.dict_values(d)
+}
+
+// Повертає список пар (ключ, значення)
+func items(d) {
+    return base.dict_items(d)
+}
+
+// Перевіряє наявність ключа у словнику
+func has(d, key) {
+    return base.has_key(d, key)
+}
+
+// Повертає значення за ключем або значення за замовчуванням
+func get(d, key, default=null) {
+    if (has(d, key)) {
+        return d[key]
+    }
+    return default
+}
+
+// Встановлює значення для ключа
+func set(d, key, value) {
+    base.dict_set(d, key, value)
+    return d
+}
+
+// Оновлює словник значеннями з іншого словника
+func update(d, updates) {
+    return base.update_dict(d, updates)
+}
+
+// Об'єднує два словники у новий
+func merge(a, b) {
+    return base.merge_dicts(a, b)
+}

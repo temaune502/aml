@@ -1,0 +1,31 @@
+import_py {plugins.network as net_plugin}
+
+// Отримує ім'я поточного хоста
+func hostname() {
+    return net_plugin.get_hostname()
+}
+
+// Отримує локальну IP-адресу
+func local_ip() {
+    return net_plugin.get_local_ip()
+}
+
+// Перетворює ім'я хоста в IP-адресу
+func resolve(host) {
+    return net_plugin.resolve_host(host)
+}
+
+// Перевіряє, чи відкритий порт на вказаному хості
+func check_port(host, port, timeout=1.0) {
+    return net_plugin.check_port(host, port, timeout)
+}
+
+// Сканує діапазон портів на вказаному хості
+func scan(host, start, end, timeout=0.1) {
+    return net_plugin.scan_ports(host, start, end, timeout)
+}
+
+// Отримує повне доменне ім'я (FQDN)
+func fqdn(name="") {
+    return net_plugin.get_fqdn(name)
+}

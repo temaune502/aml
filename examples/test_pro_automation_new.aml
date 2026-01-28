@@ -1,0 +1,36 @@
+import_py { plugins.pro_automation as pro_automation, console, base }
+
+// Test Keyboard Layout
+console.print_line("Current layout: " + pro_automation.get_keyboard_layout())
+
+pro_automation.set_keyboard_layout("en")
+pro_automation.sleep(1000)
+console.print_line("Set to EN. Current layout: " + pro_automation.get_keyboard_layout())
+
+pro_automation.set_keyboard_layout("uk")
+pro_automation.sleep(1000)
+console.print_line("Set to UK. Current layout: " + pro_automation.get_keyboard_layout())
+
+// Test Brightness
+var b = pro_automation.get_brightness()
+console.print_line("Current brightness: " + b)
+if (b != -1) {
+    pro_automation.set_brightness(b - 10)
+    pro_automation.sleep(1000)
+    pro_automation.set_brightness(b)
+}
+
+// Test Volume
+console.print_line("Setting volume to 20...")
+pro_automation.set_volume(20)
+pro_automation.sleep(1000)
+console.print_line("Current volume: " + pro_automation.get_volume())
+
+// Test Monitor (Uncomment to test, it will turn off screen)
+// console.print_line("Turning monitor off in 2 seconds...")
+// base.sleep(2000)
+// pro_automation.monitor_off()
+// base.sleep(3000)
+// pro_automation.monitor_on()
+
+console.print_line("Tests completed!")

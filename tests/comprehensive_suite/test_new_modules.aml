@@ -1,0 +1,25 @@
+var std = import("temaune/std")
+
+func test_new_modules() {
+    std.print("--- Тестування нових стандартних модулів ---")
+    
+    // JSON
+    var data = {"name": "AML", "version": 1.0, "features": ["fast", "simple"]}
+    var json_str = std.json.stringify(data, 2)
+    std.print("JSON stringify:\n" + json_str)
+    var parsed = std.json.parse(json_str)
+    std.print("Parsed JSON name: " + parsed["name"])
+    
+    // Random
+    std.print("Random int [1, 100]: " + std.rnd.randint(1, 100))
+    std.print("Random float [0, 1]: " + std.rnd.random())
+    var colors = ["red", "green", "blue"]
+    std.print("Random choice: " + std.rnd.choice(colors))
+    
+    // Datetime
+    std.print("Now ISO: " + std.dt.now_iso())
+    std.print("Current time: " + std.dt.format_now())
+    std.print("Timestamp: " + std.dt.timestamp())
+}
+
+test_new_modules()

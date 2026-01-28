@@ -1,0 +1,25 @@
+print("--- Loop Edge Cases Test ---")
+
+print("Iterating over empty list:")
+for x in [] {
+    print("Should not print this")
+}
+
+print("Iterating over string:")
+for char in "AML" {
+    print("Char: " + char)
+}
+
+print("While loop that never runs:")
+while (false) {
+    print("Should not print this")
+}
+
+print("Nested loops with break:")
+for i in [1, 2, 3] {
+    print("Outer i: " + str(i))
+    for j in [10, 20, 30] {
+        if (j == 20) {break}
+        print("  Inner j: " + str(j))
+    }
+}

@@ -1,0 +1,25 @@
+// Шаблон: Автоматизація клавіатурою та мишкою
+// Примітка: потребує встановлених бібліотек pyautogui та pynput
+
+import_py {
+  console,
+  plugins\mouse,
+  plugins\keyboard,
+  base
+}
+
+namespace automation_demo {
+  func main() {
+    console.print_line("Переміщаю курсор та роблю клік...")
+    mouse.move_mouse(200, 200)
+    base.wait(0.2)
+    mouse.click_mouse()
+
+    console.print_line("Ввожу текст у активне вікно...")
+    keyboard.type_text("Hello from AML!")
+
+    console.print_line("Готово.")
+  }
+}
+
+automation_demo.main()

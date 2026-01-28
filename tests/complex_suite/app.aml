@@ -1,0 +1,25 @@
+import_aml { 
+    tests\complex_suite\auth_service,
+    tests\complex_suite\order_service,
+    tests\complex_suite\logger
+}
+
+namespace App {
+    func run_workflow() {
+        Log.info("Starting App Workflow")
+        
+        if (Auth.login("admin", "secret")) {
+            var items = ["item1", "item2"]
+            var prices = [100, 250]
+            
+            var order = Orders.create_order("item1,item2", prices)
+            Log.info("Order created: " + order["id"])
+            
+            Auth.logout()
+            return True
+        } else {
+            Log.error("Authentication failed, aborting workflow")
+            return False
+        }
+    }
+}

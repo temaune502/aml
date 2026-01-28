@@ -1,0 +1,35 @@
+import_py {
+    base,
+    console
+}
+func sum_list(xs){
+    var total = 0
+    for i in xs {
+        total += i
+    }
+    return total
+}
+func filter_even(xs){
+    var out = []
+    for it in xs {
+        if (it % 2 == 0) {
+            base.append_to_list(out, it)
+        }
+    }
+    return out
+}
+func head(xs){
+    return xs[0]
+}
+func tail(xs){
+    var out = []
+    var first = True
+    for it in xs {
+        if (first == True) {
+            first = False
+            continue
+        }
+        base.append_to_list(out, it)
+    }
+    return out
+}

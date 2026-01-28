@@ -1,0 +1,5 @@
+namespace space2 {
+    func test (){
+        console.print_line("test from n2")
+    }
+}

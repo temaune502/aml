@@ -1,0 +1,22 @@
+// Модуль для роботи з JSON
+import_py { plugins\json as json_plugin }
+
+// Розпарсити JSON-рядок у об'єкт AML
+func parse(text) {
+    return json_plugin.parse(text)
+}
+
+// Перетворити об'єкт AML у JSON-рядок
+func stringify(obj, indent=null) {
+    return json_plugin.stringify(obj, indent)
+}
+
+// Прочитати JSON-файл та повернути об'єкт AML
+func read_file(path) {
+    return json_plugin.read_json(path)
+}
+
+// Записати об'єкт AML у JSON-файл
+func write_file(path, obj, indent=2) {
+    return json_plugin.write_json(path, obj, indent)
+}

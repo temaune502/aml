@@ -1,0 +1,381 @@
+================================================================================
+QoL МОДУЛІ - ІНФОРМАЦІЯ ПРО ВИПУСК
+================================================================================
+
+ДАТА: 16 листопада 2025
+ВЕРСІЯ: 2.0
+
+================================================================================
+ЩО НОВОГО
+================================================================================
+
+✅ НОВИЙ МОДУЛЬ: helpers.py
+   - 50+ практичних функцій для конвертування, валідації та обробки
+   - 0 зовнішніх залежностей (тільки Python stdlib)
+   - 1200 рядків коду з повною документацією
+   - Включає: SimpleCache клас, функції для файлів, стрічок, списків
+
+✅ НОВИЙ МОДУЛЬ: dsl_integration.py
+   - Повна система DSL (Domain Specific Language)
+   - 800 рядків коду з парсером, виконавцем, builder
+   - Інтеграція 20+ функцій з усіх інших модулів
+   - 10+ вбудованих команд (print, set, if, for, sleep, macro, assert...)
+
+✅ НОВА ДОКУМЕНТАЦІЯ:
+   - QOL_MODULES_DOCUMENTATION.md (повний API reference)
+   - QOL_MODULES_GUIDE.md (посібник з прикладами)
+   - examples_qol.py (20 практичних прикладів)
+
+✅ ОНОВЛЕНА ГОЛОВНА ДОКУМЕНТАЦІЯ:
+   - README.md розширена з інформацією про нові модулі
+   - Таблиця статистики (110+ функцій по всьому проекту)
+   - Нові рекомендації та інструкції
+
+================================================================================
+СТАТИСТИКА
+================================================================================
+
+МОДУЛІ:
+├── helpers.py                    1200 рядків, 50+ функцій
+├── dsl_integration.py             800 рядків, 10+ команд
+├── automation.py                  723 рядків, 40+ функцій
+├── curves.py                      387 рядків, 30+ функцій
+├── ocr.py                         320 рядків, 12 функцій
+├── screen.py                      380 рядків, 15 функцій
+├── recorder.py                    420 рядків, 18 функцій
+├── sensor.py                      360 рядків, 16 функцій
+├── performance.py                 480 рядків, 20 функцій
+└── Інші модулі                   1000+ рядків, 15+ функцій
+
+ВСЬОГО: ~6000 рядків коду, 110+ функцій
+
+ДОКУМЕНТАЦІЯ:
+├── README.md                      679 рядків
+├── QOL_MODULES_DOCUMENTATION.md  1500+ рядків
+├── QOL_MODULES_GUIDE.md          600+ рядків
+├── examples_qol.py               500+ рядків
+└── Інша документація             2000+ рядків
+
+ВСЬОГО: 5000+ рядків документації, 50+ прикладів
+
+================================================================================
+ОСНОВНІ ФУНКЦІЇ HELPERS.PY
+================================================================================
+
+Конвертування типів:
+  • to_int(value, default=0)
+  • to_float(value, default=0.0)
+  • to_bool(value) - розумне розпізнання "true", "yes", "1"
+  • to_list(value)
+  • to_dict(value)
+  • to_string(value)
+
+Валідація:
+  • is_email(value)
+  • is_url(value)
+  • is_phone(value) - підтримка +380xxx, 380xxx, 0xxx форматів
+  • is_ipv4(value)
+  • is_valid_json(value)
+  • matches_pattern(value, pattern)
+  • has_length(value, min_len, max_len)
+
+Форматування текстів:
+  • to_camel_case(text)
+  • to_snake_case(text)
+  • to_kebab_case(text)
+  • to_title_case(text)
+  • truncate(text, max_length)
+  • slugify(text)
+  • reverse_string(text)
+  • remove_special_chars(text)
+  • repeat_string(text, count)
+
+Дата і час:
+  • format_date(date, fmt="%d.%m.%Y")
+  • format_datetime(date_time, fmt="%d.%m.%Y %H:%M:%S")
+  • format_time(seconds)
+  • format_bytes(bytes)
+  • format_number(num, decimals, separator)
+  • human_readable_time_delta(datetime)
+
+Файлові операції:
+  • read_file(path, encoding="utf-8")
+  • write_file(path, content, encoding="utf-8")
+  • read_lines(path, encoding="utf-8")
+  • append_file(path, content, encoding="utf-8")
+  • delete_file(path)
+  • file_exists(path)
+  • file_size(path)
+  • ensure_dir(path)
+
+Кешування:
+  • SimpleCache(ttl=3600.0)
+  • cache.set(key, value)
+  • cache.get(key)
+  • cache.delete(key)
+  • cache.clear()
+
+Стрічки:
+  • count_words(text)
+  • count_lines(text)
+  • count_chars(text)
+  • find_all_matches(text, pattern)
+  • replace_all(text, replacements)
+  • remove_duplicates(items)
+  • dedent(text)
+
+Списки:
+  • flatten(lst)
+  • chunk_list(lst, chunk_size)
+  • unique(lst)
+  • find_index(lst, value)
+  • intersect(list1, list2)
+  • difference(list1, list2)
+  • group_by(items, key)
+
+Словники:
+  • merge_dicts(*dicts)
+  • filter_dict(d, keys)
+  • exclude_dict(d, keys)
+  • flatten_dict(d)
+  • deep_get(d, path, default=None)
+
+Хешування:
+  • hash_md5(text)
+  • hash_sha256(text)
+  • hash_file(file_path, algorithm="sha256")
+
+Система:
+  • get_current_timestamp()
+  • sleep_ms(milliseconds)
+  • get_env(name, default="")
+  • set_env(name, value)
+
+================================================================================
+ОСНОВНІ КОМАНДИ DSL_INTEGRATION.PY
+================================================================================
+
+Вбудовані команди:
+  • print(*args)              - вивід
+  • set(name, value)          - встановлення змінної
+  • get(name)                 - отримання змінної
+  • if(condition, true, false) - умовне виконання
+  • for(var, iterable, block) - цикл
+  • sleep(seconds)            - затримка
+  • macro(name, template)     - визначення макросу
+  • expand(macro, **params)   - розширення макросу
+  • assert(condition, msg)    - перевірка умови
+  • import(module)            - імпорт модуля
+
+Функції helpers через DSL:
+  • to_int(), to_float(), to_bool(), to_list(), to_str()
+  • is_email(), is_url(), is_phone(), is_ipv4()
+  • to_camel_case(), to_snake_case(), slugify()
+  • format_date(), format_time(), format_bytes()
+  • count_words(), count_chars(), reverse_string()
+  • flatten(), unique(), chunk_list(), intersect(), difference()
+  • read_file(), write_file(), file_exists()
+  • hash_md5(), hash_sha256()
+  • ... та 20+ інших
+
+Функції automation через DSL:
+  • click(x, y)
+  • move_mouse(x, y)
+  • type_text(text)
+  • press_key(key)
+  • scroll(x, y, direction)
+
+Функції інших модулів:
+  • ocr_read_text(), ocr_find_text()
+  • screen_save(), screen_find_image()
+  • recorder_start(), recorder_stop()
+  • log_info(), log_error()
+
+================================================================================
+ПРИКЛАДИ ВИКОРИСТАННЯ
+================================================================================
+
+HELPERS.PY:
+
+from plugins import helpers
+
+# Конвертування
+email = "USER@EXAMPLE.COM"
+domain = email.split("@")[1].lower()  # example.com
+slug = helpers.slugify(domain)  # example-com
+
+# Валідація
+if helpers.is_email(email):
+    print("✓ Email валідний")
+
+# Форматування
+price = 1234.567
+formatted = helpers.format_number(price, decimals=2)  # 1,234.57
+
+# Файли
+helpers.write_file("config.json", '{"debug": true}')
+config = helpers.read_file("config.json")
+
+# Кеш
+cache = helpers.SimpleCache(ttl=300)
+cache.set("settings", {"theme": "dark"})
+
+DSL_INTEGRATION.PY:
+
+from plugins.dsl_integration import create_dsl_system
+
+context, executor = create_dsl_system()
+
+script = """
+set(user, "Іван")
+set(points, 100)
+
+if($points >= 100, 
+  print("$user має достатньо очків"),
+  print("Недостатньо очків")
+)
+
+for(i, [1,2,3],
+  print("Число:", $i)
+)
+
+macro(greet, "Привіт, ${name}!")
+expand(greet, name=$user)
+"""
+
+executor.execute_script(script)
+
+КОМБІНОВАНО:
+
+from plugins import helpers
+from plugins.dsl_integration import create_dsl_system
+
+emails = [
+    "user1@example.com",
+    "invalid-email",
+    "user2@example.com"
+]
+
+valid_emails = [e for e in emails if helpers.is_email(e)]
+
+context, executor = create_dsl_system()
+
+for email in valid_emails:
+    context.set_var("email", email)
+    executor.execute_line('print("✓ Обробляю:", $email)')
+
+================================================================================
+ВСТАНОВЛЕННЯ
+================================================================================
+
+1. Завантажте файли в проект:
+   - plugins/helpers.py
+   - plugins/dsl_integration.py
+
+2. Встановіть залежності (якщо потребуються):
+   pip install pynput pillow numpy opencv-python pytesseract
+
+   (Но helpers.py і dsl_integration.py працюють без них!)
+
+3. Використовуйте в коді:
+   from plugins import helpers
+   from plugins.dsl_integration import create_dsl_system
+
+================================================================================
+ТЕСТУВАННЯ
+================================================================================
+
+Запустіть приклади:
+
+python -c "from examples_qol import example_1_type_conversion; example_1_type_conversion()"
+python -c "from examples_qol import example_11_simple_dsl; example_11_simple_dsl()"
+python -c "from examples_qol import example_12_dsl_builder; example_12_dsl_builder()"
+
+Всього 20 прикладів в examples_qol.py
+
+================================================================================
+РОЗШИРЕННЯ
+================================================================================
+
+Додаткові функції можна реєструвати:
+
+# Користувацька функція
+def my_function(x, y):
+    return x + y
+
+context.register_function("my_func", my_function)
+
+# Тепер доступна в DSL:
+script = "print(my_func(3, 5))"
+
+Користувацькі макроси:
+
+context.register_macro("greeting", "Hello, ${name}!")
+context.expand_macro("greeting", name="World")
+
+================================================================================
+ВІДОМІ ОБМЕЖЕННЯ
+================================================================================
+
+1. DSL парсер розпізнає базові типи (числа, bool, JSON)
+   - Для складних типів використовуйте JSON
+   
+2. Максимальна глибина вкладення аргументів: ~10 рівнів
+
+3. Макроси не підтримують рекурсію
+
+4. Деякі спеціальні символи потребують екранування в стрічках
+
+================================================================================
+ДОКУМЕНТАЦІЯ
+================================================================================
+
+Файли документації:
+  • README.md                     - Головна документація проекту
+  • QOL_MODULES_DOCUMENTATION.md  - Повний API reference
+  • QOL_MODULES_GUIDE.md          - Посібник з прикладами
+  • examples_qol.py               - 20 практичних прикладів
+
+================================================================================
+ПИТАННЯ І ВІДПОВІДІ
+================================================================================
+
+P: Чи потребує helpers.py зовнішні пакети?
+V: Ні! Тільки Python stdlib (pathlib, json, re, datetime, hashlib, time)
+
+P: Чи можна використовувати DSL для складних сценаріїв?
+V: Так! DSL підтримує умови, цикли, макроси та користувацькі функції
+
+P: Чи сумісна DSL система з усіма модулями?
+V: Так, всі функції інших модулів автоматично реєструються як DSL команди
+
+P: Чи можна зберігати DSL скрипти в файли?
+V: Так, просто запишіть текст в файл та прочитайте через helpers.read_file()
+
+P: Чи підтримується асинхронне виконання?
+V: Базова DSL не підтримує, але можна інтегрувати з asyncio вручну
+
+================================================================================
+КОНТРІБЮТОРИ ВІТАЮТЬСЯ!
+================================================================================
+
+Проект відкритий для поліпшень та розширень. Запропоновані напрямки:
+
+1. Розширення DSL з додатковими командами
+2. Оптимізація парсера для підтримки складніших синтаксисів
+3. Додання підтримки конфіг файлів (YAML, TOML)
+4. Інтеграція з більшою кількістю модулів
+5. Документація з візуальними діаграмами
+
+================================================================================
+ЛІЦЕНЗІЯ
+================================================================================
+
+Цей код розповсюджується як є. Використовуйте на власний ризик.
+
+================================================================================
+ДЯКУЮ ЗА ВИКОРИСТАННЯ!
+================================================================================
+
+Версія: 2.0
+Остання оновлення: 16 листопада 2025

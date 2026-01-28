@@ -1,0 +1,35 @@
+// Демонстрація реактивного ядра AML
+import_py { plugins.console_utils, plugins.system }
+
+console_utils.print_line("=== AML Reactive Core Demo ===")
+
+// Створюємо реактивні сигнали
+var count = signal(0)
+var status = signal("очікування")
+
+// Оголошуємо функцію-ефект
+func my_effect() {
+    console_utils.print_line("[Effect] Стан оновлено: count=" + str(count) + ", статус='" + status + "'")
+    
+    if (count >= 5) {
+        status = "ПОРІГ ДОСЯГНУТО"
+    }
+}
+
+// Реєструємо ефект
+effect(my_effect)
+
+// Функція для симуляції змін
+func simulate() {
+    console_utils.print_line("\n[System] Починаємо симуляцію змін...")
+    
+    for i in 1..6 {
+        system.sleep(0.01)
+        console_utils.print_line("\n[System] Змінюємо count на " + str(i))
+        count = i
+    }
+}
+
+simulate()
+
+console_utils.print_line("\n[System] Симуляція завершена.")

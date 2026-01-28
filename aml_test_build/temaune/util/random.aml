@@ -1,0 +1,32 @@
+// Модуль для генерації випадкових значень
+import_py { plugins\random as rnd_plugin }
+
+// Повертає випадкове ціле число в діапазоні [a, b]
+func randint(a, b) {
+    return rnd_plugin.randint(a, b)
+}
+
+// Повертає випадкове число з плаваючою крапкою в діапазоні [a, b]
+func uniform(a, b) {
+    return rnd_plugin.uniform(a, b)
+}
+
+// Вибирає випадковий елемент зі списку
+func choice(seq) {
+    return rnd_plugin.choice(seq)
+}
+
+// Перемішує список (повертає перемішану копію або змінює оригінал залежно від реалізації плагіна)
+func shuffle(seq) {
+    return rnd_plugin.shuffle(seq)
+}
+
+// Повертає випадкове число в діапазоні [0.0, 1.0)
+func random() {
+    return rnd_plugin.random()
+}
+
+// Встановлює початкове значення для генератора
+func seed(a) {
+    rnd_plugin.seed(a)
+}

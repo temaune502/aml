@@ -1,0 +1,31 @@
+print("--- Higher Order Functions Test ---")
+
+func map(list, fn) {
+    var result = []
+    for item in list {
+        result.append(fn(item))
+    }
+    return result
+}
+
+func filter(list, predicate) {
+    var result = []
+    for item in list {
+        if (predicate(item)) {
+            result.append(item)
+        }
+    }
+    return result
+}
+
+var nums = [1, 2, 3, 4, 5, 6]
+
+func double(x) { return x * 2 }
+func is_even(x) { return x % 2 == 0 }
+
+var doubled = map(nums, double)
+var evens = filter(nums, is_even)
+
+print("Original:", nums)
+print("Doubled:", doubled)
+print("Evens:", evens)

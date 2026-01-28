@@ -1,0 +1,18 @@
+// Тест для dict comprehensions
+
+var numbers = [1, 2, 3, 4, 5]
+
+// Просте перетворення
+var squares_dict = {str(x): x * x for x in numbers}
+print("Числа: " + str(numbers))
+print("Квадрати (словник): " + str(squares_dict))
+
+// З фільтрацією
+var even_squares_dict = {str(x): x * x for x in numbers if x % 2 == 0}
+print("Квадрати парних чисел (словник): " + str(even_squares_dict))
+
+// Робота з об'єктами
+var words = ["apple", "banana", "cherry"]
+var word_lengths = {w: len(w) for w in words}
+print("Слова: " + str(words))
+print("Довжини слів: " + str(word_lengths))

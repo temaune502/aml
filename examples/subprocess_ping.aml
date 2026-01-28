@@ -1,0 +1,12 @@
+import_py { subprocess, pathlib }
+
+meta { entry: "app.main" }
+
+namespace app {
+  func main() {
+    var p = pathlib.Path("./tmp_aml")
+    p.mkdir(exist_ok=True)
+    var res = subprocess.run(["ping", "-n", "1", "8.8.8.8"], capture_output=True, text=True)
+    p.joinpath("ping.txt").write_text(res.stdout, encoding="utf-8")
+  }
+}

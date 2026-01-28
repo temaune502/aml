@@ -1,0 +1,14 @@
+import_py {
+  console,
+  base
+}
+
+namespace lib {
+  func add(a, b) {
+    return a + b
+  }
+  func main() {
+    console.print_line(base.to_str(add(2,3)))
+  }
+}
+lib.main()

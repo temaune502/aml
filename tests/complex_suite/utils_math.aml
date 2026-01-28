@@ -1,0 +1,35 @@
+meta {
+    version: "1.0.0",
+    author: "Trae"
+}
+
+namespace MathUtils {
+    func add(a, b) {
+        return a + b
+    }
+
+    func sub(a, b) {
+        return a - b
+    }
+
+    func mul(a, b) {
+        return a * b
+    }
+
+    func div_safe(a, b) {
+        if (b == 0) {
+            return 0
+        }
+        return a / b
+    }
+    
+    func power(base, exp) {
+        var res = 1
+        var i = 0
+        while (i < exp) {
+            res = res * base
+            i = i + 1
+        }
+        return res
+    }
+}

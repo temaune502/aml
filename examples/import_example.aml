@@ -1,0 +1,51 @@
+// Приклад імпортування інших AML файлів
+
+// Імпорт Python модулів (підтримка ком та alias через 'as')
+import_py {
+    console,
+    base as b
+}
+func sum_list(list){
+    console.print_line(base.to_str(list),"dsf")
+    var result = 0
+    for (item in list) {
+        var num = base.to_int(item)
+        result = num + result
+    }
+    console.print_line(base.to_str(result))
+    return result
+}
+// Імпорт AML модулів
+console.print_line("INIT import_example")
+// Використання alias для Python-модуля base
+b.sleep_millis(100)
+func multiply(x, y){
+    return x + y
+}
+func func1(){
+    var module_greeting = "test"
+    // Використання змінних з імпортованого модуля
+    console.print_colored(module_greeting, "cyan")
+
+    // Використання функцій з імпортованого модуля
+    var result = say_hello("Користувач")
+    console.print_line(result)
+
+    // Використання функцій з параметрами
+    var product = multiply(5, 7)
+    console.print_line("5 * 7 = " + product)
+
+    // Робота зі списками з імпортованого модуля
+
+
+    // Визначення власної функції, яка використовує імпортовану
+    func process_data(data) {
+        var processed = multiply(sum_list(data), 2)
+        return processed
+    }
+
+    // Виклик власної функції
+    var data = [1, 2, 3, 4, 5]
+    var processed_data = process_data(data)
+    console.print_line("Оброблені дані: " + processed_data)
+}

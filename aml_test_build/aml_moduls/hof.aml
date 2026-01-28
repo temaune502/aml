@@ -1,0 +1,139 @@
+import_py {
+    base,
+    console
+}
+func map(xs, fn){
+    var out = []
+    for it in xs {
+        base.append_to_list(out, fn(it))
+    }
+    return out
+}
+func filter(xs, pred){
+    var out = []
+    for it in xs {
+        if (pred(it)) {
+            base.append_to_list(out, it)
+        }
+    }
+    return out
+}
+func reduce(xs, fn, init){
+    var acc = init
+    for it in xs {
+        acc = fn(acc, it)
+    }
+    return acc
+}
+func pipe(value, funcs){
+    var r = value
+    for f in funcs {
+        r = f(r)
+    }
+    return r
+}
+func compose_apply(f, g, x){
+    return f(g(x))
+}
+func flat_map(xs, fn){
+    var out = []
+    for it in xs {
+        var sub = fn(it)
+        for s in sub {
+            base.append_to_list(out, s)
+        }
+    }
+    return out
+}
+func parallel_map(xs, fn){
+    var tasks = []
+    for it in xs {
+        var t = spawn fn(it)
+        base.append_to_list(tasks, t)
+    }
+    var results = []
+    for tt in tasks {
+        var r = tt.join()
+        base.append_to_list(results, r)
+    }
+    return results
+}
+func group_by(xs, keyfn){
+    var out = {}
+    for it in xs {
+        var k = keyfn(it)
+        try {
+            var bucket = out[k]
+        } catch {
+            var bucket = []
+            out[k] = bucket
+        }
+        base.append_to_list(out[k], it)
+    }
+    return out
+}
+func zip2(xs, ys){
+    var out = []
+    var i = 0
+    for a in xs {
+        try {
+            var b = ys[i]
+        } catch {
+            break
+        }
+        base.append_to_list(out, [a, b])
+        i += 1
+    }
+    return out
+}
+func unique(xs){
+    var out = []
+    for it in xs {
+        var found = False
+        for j in out {
+            if (j == it) {
+                found = True
+            }
+        }
+        if (found == False) {
+            base.append_to_list(out, it)
+        }
+    }
+    return out
+}
+func take(xs, n){
+    var out = []
+    var i = 0
+    for it in xs {
+        if (i >= n) {
+            break
+        }
+        base.append_to_list(out, it)
+        i += 1
+    }
+    return out
+}
+func drop(xs, n){
+    var out = []
+    var i = 0
+    for it in xs {
+        if (i < n) {
+            i += 1
+            continue
+        }
+        base.append_to_list(out, it)
+    }
+    return out
+}
+func partition(xs, pred){
+    var t = []
+    var f = []
+    for it in xs {
+        if (pred(it)) {
+            base.append_to_list(t, it)
+        } else {
+            base.append_to_list(f, it)
+        }
+    }
+    return [t, f]
+}

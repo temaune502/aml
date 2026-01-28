@@ -1,0 +1,29 @@
+// Сервіс Б: Слухає "pong" та може ініціювати "ping"
+import_py { plugins.console_utils, plugins.event_system, plugins.random, plugins.convert }
+
+func handle_pong(data) {
+    console_utils.print_line("[Service B] Отримано PONG від: " + data.sender)
+    console_utils.print_line("[Service B] Відповідь: " + data.msg)
+    console_utils.print_line("[Service B] Комунікація завершена успішно для ID: " + convert.to_str(data.original_id))
+}
+
+func send_ping(message) {
+    var request = {
+        "id": random.randint(1000, 9999),
+        "sender": "Service B",
+        "msg": message
+    }
+    console_utils.print_line("[Service B] Надсилаю PING до Service A...")
+    event_system.emit("ping_event", request)
+}
+
+func init() {
+    console_utils.print_line("[Service B] Запущено. Слухаю PONG події...")
+    event_system.subscribe("pong_event", handle_pong)
+}
+
+// Експортуємо функції
+return {
+    "init": init,
+    "send_ping": send_ping
+}

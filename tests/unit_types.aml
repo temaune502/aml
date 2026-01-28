@@ -1,0 +1,29 @@
+meta { entry: "main" }
+import_py { console, base }
+
+func main() {
+    // Numbers
+    var a = 10
+    var b = 3.5
+    if (a + b != 13.5) { console.print_line("Fail: float add") }
+    if (a * 2 != 20) { console.print_line("Fail: int mul") }
+    
+    // Strings
+    var s1 = "Hello"
+    var s2 = "World"
+    if (s1 + " " + s2 != "Hello World") { console.print_line("Fail: string concat") }
+    
+    // Lists
+    var l = [1, 2, 3]
+    l.append(4)
+    if (base.lenn(l) != 4) { console.print_line("Fail: list append") }
+    if (l[0] != 1) { console.print_line("Fail: list get") }
+    
+    // Maps
+    var m = {"k": "v"}
+    if (m["k"] != "v") { console.print_line("Fail: map get") }
+    m["k2"] = 100
+    if (m["k2"] != 100) { console.print_line("Fail: map set") }
+    
+    console.print_line("Types test done")
+}

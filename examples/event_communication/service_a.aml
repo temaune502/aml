@@ -1,0 +1,26 @@
+// Сервіс А: Слухає "ping" та відповідає "pong"
+import_py { plugins.console_utils, plugins.event_system }
+
+func handle_ping(data) {
+    console_utils.print_line("[Service A] Отримано PING від: " + data.sender)
+    console_utils.print_line("[Service A] Повідомлення: " + data.msg)
+    
+    var response = {
+        "sender": "Service A",
+        "msg": "Привіт від А! Я отримав твоє повідомлення.",
+        "original_id": data.id
+    }
+    
+    console_utils.print_line("[Service A] Надсилаю PONG...")
+    event_system.emit("pong_event", response)
+}
+
+func init() {
+    console_utils.print_line("[Service A] Запущено. Чекаю на події...")
+    event_system.subscribe("ping_event", handle_ping)
+}
+
+// Експортуємо функцію ініціалізації
+return {
+    "init": init
+}

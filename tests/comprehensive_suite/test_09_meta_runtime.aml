@@ -1,0 +1,18 @@
+meta {
+    version: "2.0.0",
+    author: "AML Team",
+    entry: "main_func",
+    custom_field: "test-value"
+}
+
+func main_func() {
+    print("--- Metadata and Entrypoint Test ---")
+    print("Metadata from 'meta' namespace:")
+    print("- version: " + meta["version"])
+    print("- author: " + meta["author"])
+    print("- custom: " + meta["custom_field"])
+    
+    print("System info from 'runtime':")
+    print("- language_version: " + runtime.language_version)
+    print("- entry_file: " + runtime.entry_file)
+}

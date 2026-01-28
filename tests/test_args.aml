@@ -1,0 +1,7 @@
+func test_args(a, b) {
+    print("a =", a)
+    print("b =", b)
+    print("args list =", args)
+}
+
+test_args(10, 20, 30, "hello")

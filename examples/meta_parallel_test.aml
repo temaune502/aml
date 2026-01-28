@@ -1,0 +1,23 @@
+meta {
+  version: "1.0",
+  entry: "app.main",
+  author: "Dev",
+  created: "2025-11-02",
+  notes: "Smoke test for meta and parallel"
+}
+
+import_py { builtins }
+
+namespace app {
+  func main() {
+    builtins.print("MAIN START")
+  }
+  func worker() {
+    builtins.print("WORKER RUN")
+  }
+}
+
+parallel {
+  app.worker()
+  app.worker()
+}

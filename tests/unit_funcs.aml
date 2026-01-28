@@ -1,0 +1,28 @@
+meta { entry: "main" }
+import_py { console, base }
+
+var global_x = 10
+
+func adder(x) {
+    // Closure support check
+    // Note: If closures aren't fully supported, this might fail or need simpler function
+    return x + 5 
+}
+
+func recursive(n) {
+    if (n <= 1) { return 1 }
+    return n * recursive(n - 1)
+}
+
+func main() {
+    // Basic Func
+    if (adder(5) != 10) { console.print_line("Fail: basic func") }
+    
+    // Recursion
+    if (recursive(5) != 120) { console.print_line("Fail: recursion") }
+    
+    // Global access
+    if (global_x != 10) { console.print_line("Fail: global read") }
+    
+    console.print_line("Funcs test done")
+}

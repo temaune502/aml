@@ -1,0 +1,17 @@
+// Модуль для роботи з глобальними гарячими клавішами
+// Використовує плагін plugins/pro_automation/hotkeys.py
+
+import_py "plugins.pro_automation.hotkeys" as _hk
+
+// Реєструє глобальну гарячу клавішу
+// hotkey_str: рядок накшталт "ctrl+alt+s"
+// callback: функція, яка буде викликана при натисканні
+// Повертає ID гарячої клавіші
+func register(hotkey_str, callback) {
+    return _hk.register_hotkey(hotkey_str, callback)
+}
+
+// Видаляє реєстрацію гарячої клавіші за її ID
+func unregister(id) {
+    return _hk.unregister_hotkey(id)
+}

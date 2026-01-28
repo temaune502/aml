@@ -1,0 +1,52 @@
+// Шаблон: Випадкова автоматизація з випадковими інтервалами
+// Виконує одну з випадкових дій у випадковий момент часу.
+
+import_py {
+  console,
+  plugins\mouse,
+  plugins\keyboard,
+  base
+}
+
+namespace random_auto {
+  var min_interval = 1  // мінімум секунд
+  var max_interval = 2  // максимум секунд
+
+  // Набір можливих клавіш
+  var keys = ["enter", "space", "tab", "a", "b", "c"]
+
+  func rand_wait() {
+    var delta = base.random_int(min_interval, max_interval)
+    console.print_colored("Чекаю " + delta + " сек...", "yellow")
+    base.wait(delta)
+  }
+
+  func do_random_action() {
+    var choice = base.random_int(0, 2) // 0..2
+    if (choice == 0) {
+      // Рух мишкою в випадкову позицію навколо поточної
+      var pos = mouse.get_mouse_position()
+      var dx = base.random_int(-50, 50)
+      var dy = base.random_int(-50, 50)
+      mouse.move_mouse(pos[0] + dx, pos[1] + dy)
+      console.print_line("Рух мишкою: (" + dx + ", " + dy + ")")
+    } if (choice == 1) {
+      mouse.click_mouse()
+      console.print_line("Клік мишкою")
+    } else {
+      var k = base.choose(keys)
+      keyboard.press_key(k)
+      console.print_line("Натиснуто клавішу: " + k)
+    }
+  }
+
+  func main() {
+    console.print_line("Запуск Random Automation...")
+    while (True) {
+      rand_wait()
+      do_random_action()
+    }
+  }
+}
+base.wait(3)
+random_auto.main()

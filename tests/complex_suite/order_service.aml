@@ -1,0 +1,26 @@
+import_aml { 
+    tests\complex_suite\data_manager,
+    tests\complex_suite\network_mock,
+    tests\complex_suite\logger
+}
+
+namespace Orders {
+    func create_order(items, prices) {
+        Log.info("Creating order...")
+        var total = Data.process_numbers(prices)
+        
+        if (total > 1000) {
+            Log.info("High value order: " + total)
+        }
+        
+        Net.connect("http://api.orders.com")
+        var resp = Net.request("/create", "items=" + items)
+        Net.disconnect()
+        
+        return {
+            "id": "ORD-999",
+            "total": total,
+            "status": "CREATED"
+        }
+    }
+}

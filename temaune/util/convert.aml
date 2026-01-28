@@ -1,0 +1,39 @@
+// Модуль для перетворення типів
+// Використовує плагін plugins/convert.py
+
+import_py {plugins.convert as _conv}
+
+// Перетворює значення в рядок
+func to_str(val) {
+    return _conv.to_str(val)
+}
+
+// Перетворює значення в ціле число
+func to_int(val, default = 0) {
+    return _conv.to_int(val, default)
+}
+
+// Перетворює значення в число з плаваючою комою
+func to_float(val, default = 0.0) {
+    return _conv.to_float(val, default)
+}
+
+// Перетворює значення в логічний тип
+func to_bool(val) {
+    return _conv.to_bool(val)
+}
+
+// Перетворює значення в список
+func to_list(val) {
+    return _conv.to_list(val)
+}
+
+// Повертає назву типу значення
+func type_of(val) {
+    return _conv.get_type(val)
+}
+
+// Рекурсивно перетворює типи Python в типи AML
+func to_aml(val) {
+    return _conv.to_aml(val)
+}

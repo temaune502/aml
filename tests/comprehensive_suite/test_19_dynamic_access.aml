@@ -1,0 +1,24 @@
+print("--- Dynamic Access Test ---")
+
+var obj = {
+    "prop1": "value1",
+    "prop2": "value2"
+}
+
+var p = "prop1"
+print("Access by variable p=" + p + ":", obj[p])
+
+func get_prop(o, name) {
+    return o[name]
+}
+
+print("Access via function:", get_prop(obj, "prop2"))
+
+// Testing attribute access vs index access if both supported
+// In AML, usually namespace.var or dict["key"]
+namespace ns {
+    var x = 100
+}
+
+var target = ns
+print("Namespace variable via attribute:", target.x)

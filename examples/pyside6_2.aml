@@ -1,0 +1,65 @@
+import_py {
+    PySide6.QtWidgets
+    sys
+ }
+
+meta { entry: "app.main" }
+
+namespace app {
+  func main() {
+    var app = QtWidgets.QApplication(sys.argv)
+
+    var window = QtWidgets.QWidget()
+    window.setWindowTitle("Форма: інпут, комбобокс та дії")
+    window.resize(540, 360)
+
+    // Основний вертикальний макет
+    var root = QtWidgets.QVBoxLayout()
+    window.setLayout(root)
+
+    // Форма з підписами (ім’я + вибір кольору)
+    var form = QtWidgets.QFormLayout()
+    root.addLayout(form)
+
+    var nameEdit = QtWidgets.QLineEdit()
+    var colorCombo = QtWidgets.QComboBox()
+    colorCombo.addItem("Red")
+    colorCombo.addItem("Green")
+    colorCombo.addItem("Blue")
+
+    form.addRow("Ім’я:", nameEdit)
+    form.addRow("Колір:", colorCombo)
+
+    // Прев’ю: показує введене ім’я
+    var previewLabel = QtWidgets.QLabel("Введіть ім’я")
+    root.addWidget(previewLabel)
+
+    // Показує обраний колір (текстом)
+    var colorLabel = QtWidgets.QLabel("Колір не обрано")
+    root.addWidget(colorLabel)
+
+    // Кнопки дій
+    var buttons = QtWidgets.QHBoxLayout()
+    var clearBtn = QtWidgets.QPushButton("Очистити")
+    var closeBtn = QtWidgets.QPushButton("Закрити")
+    buttons.addWidget(clearBtn)
+    buttons.addWidget(closeBtn)
+    root.addLayout(buttons)
+
+    // Під’єднання сигналів до готових слотів
+    // QLineEdit.textChanged -> QLabel.setText (рядок проходить напряму)
+    nameEdit.textChanged.connect(previewLabel.setText)
+
+    // QComboBox.currentTextChanged -> QLabel.setText
+    colorCombo.currentTextChanged.connect(colorLabel.setText)
+
+    // Очистити інпут
+    clearBtn.clicked.connect(nameEdit.clear)
+
+    // Закрити вікно
+    closeBtn.clicked.connect(window.close)
+
+    window.show()
+    app.exec()
+  }
+}

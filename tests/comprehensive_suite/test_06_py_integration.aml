@@ -1,0 +1,24 @@
+import_py {
+    os,
+    sys,
+    datetime as dt
+}
+
+print("--- Python Integration Test ---")
+print("OS Platform:", sys.platform)
+print("Current Dir:", os.getcwd())
+
+var now = dt.datetime.now()
+print("Current year:", now.year)
+
+// Test python class instantiation if available in a mock-like way
+// For now, just test calling functions
+var path_exists = os.path.exists("aml.py")
+print("aml.py exists:", path_exists)
+
+func test_python_callback(py_func) {
+    return py_func("hello from aml")
+}
+
+// print is actually a python function in our environment
+test_python_callback(print)

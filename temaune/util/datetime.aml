@@ -1,0 +1,22 @@
+// Модуль для роботи з часом та датами
+import_py { plugins\datetime as dt_plugin }
+
+// Повертає поточний час у форматі ISO 8601 (UTC)
+func now_iso() {
+    return dt_plugin.now_iso()
+}
+
+// Повертає поточний timestamp у секундах
+func timestamp() {
+    return dt_plugin.timestamp()
+}
+
+// Повертає відформатований поточний час (локальний)
+func format_now(fmt="%Y-%m-%d %H:%M:%S") {
+    return dt_plugin.format_now(fmt)
+}
+
+// Форматує переданий timestamp у рядок за заданим форматом
+func format_timestamp(ts, fmt="%Y-%m-%d %H:%M:%S") {
+    return dt_plugin.format_timestamp(ts, fmt)
+}

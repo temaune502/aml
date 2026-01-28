@@ -1,0 +1,25 @@
+// Шаблон: Робота з файлами та папками
+
+import_py {
+  console,
+  plugins\file,
+  base
+}
+
+namespace file_demo {
+  func main() {
+    var dir = "data"
+    file.make_dir(dir)
+    var path = file.path_join(dir, "hello.txt")
+    file.write_file(path, "Привіт, файл!\nЦе приклад запису.")
+    console.print_line("Файл створено: " + path)
+
+    var content = file.read_file(path)
+    console.print_line("Вміст:")
+    console.print_line(content)
+
+    console.print_line("Список у директорії '" + dir + "': " + base.to_str(file.list_dir(dir)))
+  }
+}
+
+file_demo.main()

@@ -1,0 +1,75 @@
+// Модуль системних завдань
+var std = import("temaune/std")
+
+// Функція для створення лог-файлу
+func save_report(name, data) {
+    var filename = "complex_test/" + name + ".json"
+    var content = std.json.stringify(data, 4)
+    std.file.write(filename, content)
+    return filename
+}
+
+// Функція, що імітує системну подію
+func trigger_system_event(event_name, info) {
+    std.io.print("[System] Симулюємо подію: " + event_name)
+    std.event.emit(event_name, info)
+}
+
+// Функція для отримання інформації про ОС
+func get_sys_info() {
+    return {
+        "os": std.sys.os_name(),
+        "time": std.dt.format_now(),
+        "cwd": std.file.cwd()
+    }
+}
+
+// Робота з HTTP та JSON
+func sync_with_server(data) {
+    var payload = std.json.stringify(data)
+    std.io.print("[System] Відправка даних на сервер (симуляція)...")
+    
+    // Використовуємо публічний API для тесту (якщо є мережа)
+    // Якщо мережі немає, блок try/catch (якщо він є в AML) або просто ігноруємо помилку
+    // Для тесту використаємо локальний хост або заглушку
+    var response = std.http.get("https://jsonplaceholder.typicode.com/posts/1")
+    
+    if (response.status == 200) {
+        var server_data = std.json.parse(response.body)
+        std.io.print("[System] Отримано відповідь від сервера: " + server_data.title)
+        return server_data
+    }
+    return null
+}
+
+// Робота з системним оточенням
+func check_environment() {
+    var user = std.sys.get_env("USERNAME", "Unknown")
+    var path = std.sys.get_env("PATH", "")
+    
+    return {
+        "user": user,
+        "path_length": std.str.length(path)
+    }
+}
+
+// Розширені операції з файлами
+func manage_files() {
+    var test_dir = "complex_test/temp_dir"
+    if (std.file.exists(test_dir)) {
+        std.file.delete(test_dir)
+    }
+    std.file.mkdir(test_dir)
+    
+    var src = "complex_test/final_results.json"
+    var dst = "complex_test/temp_dir/results_backup.json"
+    
+    if (std.file.exists(src)) {
+        std.file.copy(src, dst)
+        std.io.print("[FS] Файл скопійовано до: " + dst)
+    }
+    
+    var files = std.file.list("complex_test")
+    std.io.print("[FS] Файлів у папці complex_test: " + std.conv.to_str(std.list.length(files)))
+    return files
+}

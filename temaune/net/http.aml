@@ -1,0 +1,26 @@
+import_py {plugins.network as net_plugin}
+
+// Виконує HTTP GET запит
+func get(url, params=null, headers=null) {
+    return net_plugin.http_get(url, params, headers)
+}
+
+// Виконує HTTP POST запит
+func post(url, data=null, headers=null, is_json=true) {
+    return net_plugin.http_post(url, data, headers, is_json)
+}
+
+// Виконує HTTP PUT запит
+func put(url, data=null, headers=null, is_json=true) {
+    return net_plugin.http_put(url, data, headers, is_json)
+}
+
+// Виконує HTTP PATCH запит
+func patch(url, data=null, headers=null, is_json=true) {
+    return net_plugin.http_patch(url, data, headers, is_json)
+}
+
+// Виконує HTTP DELETE запит
+func delete(url, params=null, headers=null) {
+    return net_plugin.http_delete(url, params, headers)
+}

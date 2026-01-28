@@ -1,0 +1,30 @@
+import_py {
+    base,
+    console
+}
+import_aml {
+    aml_moduls/hof
+}
+func inc(a){
+    return a + 1
+}
+func add(a, b){
+    return a + b
+}
+func is_even(n){
+    return (n % 2 == 0)
+}
+var xs = [1,2,3,4,5,6]
+console.print_line(base.to_str(map(xs, inc)))
+console.print_line(base.to_str(filter(xs, is_even)))
+console.print_line(reduce(xs, add, 1))
+console.print_line(base.to_str(parallel_map(xs, inc)))
+var grouped = group_by(xs, is_even)
+console.print_line(base.to_str(grouped[True]))
+console.print_line(base.to_str(grouped[False]))
+console.print_line(base.to_str(unique([1,2,2,3,1,4])))
+console.print_line(base.to_str(take(xs, 3)))
+console.print_line(base.to_str(drop(xs, 3)))
+console.print_line(base.to_str(zip2([1,2,3], [4,5])))
+var r = pipe(2, [inc, inc, inc])
+console.print_line(r)

@@ -1,0 +1,24 @@
+// AML SDK - Input Helpers
+import_py { 
+    plugins.mouse as mouse, 
+    plugins.keyboard as keyboard, 
+    plugins.human_mouse as human_mouse 
+}
+
+func move_and_click(x, y, button="left", speed=3) {
+    human_mouse.move_human_advanced(x, y, speed=speed)
+    mouse.click(button=button)
+}
+
+func drag(x1, y1, x2, y2, speed=3) {
+    human_mouse.move_human_advanced(x1, y1, speed=speed)
+    mouse.press(button="left")
+    human_mouse.move_human_advanced(x2, y2, speed=speed)
+    mouse.release(button="left")
+}
+
+func type_slowly(text, min_delay=0.05, max_delay=0.2) {
+    // This requires a loop since keyboard.type usually has a fixed delay
+    // But we can use individual key presses if we want true randomness
+    keyboard.type(text, delay=0.1) // Simple version for now
+}

@@ -1,0 +1,23 @@
+// Демонстрація: одинарні лапки у рядках та kwargs для AML-функцій
+
+import_py { console as c}
+
+func add(a, b) {
+    return a + b
+}
+
+// Рядок в одинарних лапках
+c.print_line('single-quoted string works')
+
+// Позиційний виклик
+var r1 = add(2, 3)
+c.print_line("r1 = " + r1)
+var a = null
+var b = null
+// Виклик із kwargs
+var r2 = add(5, 7)
+c.print_line("r2 = " + str(r2))
+
+// Комбінований виклик: позиційні + kwargs
+var r3 = add(10, 1)
+c.print_line("r3 = " + str(r3))

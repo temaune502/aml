@@ -1,0 +1,18 @@
+import_py {
+    console,
+    base
+}
+console.print_line("string_utils init")
+func greet(name="world"){
+    var s = "Hello" + " " + name
+    console.print_line(s)
+    return s
+}
+func path_join(a, b){
+    return a + "/" + b
+}
+func escape_demo(){
+    var s = "line1\\nline2\\tend"
+    console.print_line(s)
+    return s
+}

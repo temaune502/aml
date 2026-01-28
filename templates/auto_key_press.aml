@@ -1,0 +1,25 @@
+// Шаблон: Періодичне натискання клавіші
+// Натискає задану клавішу кожні N секунд.
+
+import_py {
+  console,
+  plugins\keyboard,
+  base
+}
+
+namespace auto_keys {
+  var interval_sec = 15 // Інтервал у секундах
+  var key_name = "enter" // Яку клавішу натискати (наприклад: enter, a, f5)
+
+  func main() {
+    console.print_line("Запуск Auto Key Press... Клавіша: " + key_name)
+    while (True) {
+      console.print_colored("Натискаю: " + key_name, "green")
+      keyboard.press_key(key_name)
+      console.print_colored("Чекаю " + interval_sec + " секунд...", "yellow")
+      base.wait(interval_sec)
+    }
+  }
+}
+
+auto_keys.main()

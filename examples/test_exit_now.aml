@@ -1,0 +1,11 @@
+import_py {
+    console
+}
+
+func main() {
+    console.print_line("This will print.")
+    exit_now(0)
+    console.print_line("This will NOT print.")
+}
+
+main()

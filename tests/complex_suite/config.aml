@@ -1,0 +1,18 @@
+namespace Config {
+    var db_host = "localhost"
+    var db_port = 5432
+    var timeout = 30
+    var environment = "TEST"
+    
+    func get_db_url() {
+        return "jdbc:postgresql://" + db_host + ":" + db_port
+    }
+    
+    func set_env(env) {
+        environment = env
+    }
+    
+    func is_prod() {
+        return environment == "PROD"
+    }
+}

@@ -1,0 +1,51 @@
+import_py {
+    plugins.pro_automation as auto,
+    console
+}
+
+meta {
+    entry: "main"
+}
+namespace Global {
+    var Active = True
+}
+func on_hotkey_pressed() {
+    console.print_line("--- Гаряча клавіша спрацювала! ---")
+    auto.beep(1000, 200)
+    
+    var title = auto.get_active_window_title()
+    console.print_line("Активне вікно: " + title)
+
+}
+
+func on_exit_hotkey() {
+    console.print_line("Вихід за гарячою клавішею...")
+    auto.unregister_hotkey(1)
+    auto.unregister_hotkey(2)
+    Global.Active = False
+}
+
+func main() {
+    console.print_line("--- Тестування гарячих клавіш ---")
+    
+    // Реєструємо гарячу клавішу Ctrl+Alt+S
+    var hk1 = auto.register_hotkey("Ctrl+1, on_hotkey_pressed)
+    console.print_line(hk1)
+    if (hk1) {
+        console.print_line("Зареєстровано гарячу клавішу: Ctrl+Alt+S (виводить інфо)")
+    }
+    
+    // Реєструємо гарячу клавішу Ctrl+Alt+Q для виходу
+    var hk2 = auto.register_hotkey("Ctrl+2", on_exit_hotkey)
+    console.print_line(hk2)
+    if (hk2) {
+        console.print_line("Зареєстровано гарячу клавішу: Ctrl+Alt+Q (вихід)")
+    }
+    
+    console.print_line("Натисніть Ctrl+Alt+S для тесту або Ctrl+Alt+Q для завершення.")
+    
+    // Безкінечний цикл для очікування (або можна використати ui.run_loop якщо є GUI)
+    while (Global.Active) {
+        auto.sleep(1000)
+    }
+}

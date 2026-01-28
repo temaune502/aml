@@ -1,0 +1,82 @@
+// Модуль логіки та обробки даних
+var std = import("temaune/std")
+
+// Функція для генерації статистики по числах
+func process_numbers(nums) {
+    // Використання List Comprehension для фільтрації та перетворення
+    var evens = [x for x in nums if x % 2 == 0]
+    var squares = [x * x for x in evens]
+    
+    var sum_val = 0
+    for (s in squares) {
+        sum_val = sum_val + s
+    }
+    
+    var avg = 0
+    if (std.list.length(squares) > 0) {
+        avg = sum_val / std.list.length(squares)
+    }
+    
+    return {
+        "original": nums,
+        "evens": evens,
+        "squares": squares,
+        "sum": sum_val,
+        "average": avg,
+        "max": std.math.max(0, sum_val) // Просто приклад використання math
+    }
+}
+
+// Функція для аналізу тексту
+func analyze_text(text) {
+    var words = std.str.split(text, " ")
+    // Dict Comprehension для підрахунку довжин
+    var lengths = {w: std.str.length(w) for w in words if std.str.length(w) > 0}
+    
+    return {
+        "word_count": std.list.length(words),
+        "lengths": lengths,
+        "upper": std.str.upper(text)
+    }
+}
+
+// Нова функція для валідації та конвертації даних
+func validate_and_convert(data_list) {
+    var results = []
+    for (item in data_list) {
+        // Регулярний вираз для перевірки чи є рядок числом
+        if (std.re.matches("^[0-9]+$", std.conv.to_str(item))) {
+            var val = std.conv.to_int(item)
+            std.list.append(results, {"raw": item, "val": val, "type": "number"})
+        } else {
+            std.list.append(results, {"raw": item, "val": item, "type": "string"})
+        }
+    }
+    
+    // Dict comprehension для підрахунку типів
+    var type_counts = {
+        "numbers": std.list.length([r for r in results if r.type == "number"]),
+        "strings": std.list.length([r for r in results if r.type == "string"])
+    }
+    
+    return {
+        "items": results,
+        "stats": type_counts
+    }
+}
+
+// Робота з випадковими даними
+func generate_random_report(count) {
+    var report = []
+    var i = 0
+    while (i < count) {
+        var entry = {
+            "id": i,
+            "score": std.rnd.randint(1, 100),
+            "status": std.rnd.choice(["active", "pending", "closed"])
+        }
+        std.list.append(report, entry)
+        i = i + 1
+    }
+    return report
+}

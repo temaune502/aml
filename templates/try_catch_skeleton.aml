@@ -1,0 +1,22 @@
+// Шаблон: Обробка помилок (try/catch)
+
+import_py {
+  console,
+  base
+}
+
+namespace errors_demo {
+  func main() {
+    try {
+      // Спроба виконати небезпечну операцію
+      var div = base.divide(10, 0)
+      console.print_line("Результат: " + div)
+    } catch {
+      // Змінна 'error' доступна в блоці catch
+      console.print_line("Сталася помилка: " + error)
+    }
+  }
+}
+
+errors_demo.main()
+console.print_line("перехоплено")

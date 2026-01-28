@@ -1,0 +1,15 @@
+import_py {
+    base
+    console
+}
+import_aml {
+    examples\n2
+}
+namespace program {
+    func main () {
+        console.print_line("Hello from n1")
+        space2.test()
+    }
+}
+program.main()
+base.wait(10)

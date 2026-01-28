@@ -1,0 +1,30 @@
+import_py { PySide6.QtWidgets
+sys }
+
+meta { entry: "app.main" }
+
+namespace app {
+  func main() {
+    var app = QtWidgets.QApplication(sys.argv)
+
+    var window = QtWidgets.QWidget()
+    window.setWindowTitle("AML + PySide6")
+    window.resize(480, 300)
+
+    var layout = QtWidgets.QVBoxLayout()
+    var label = QtWidgets.QLabel("Вітаю! Це PySide6 в AML.")
+    var button = QtWidgets.QPushButton("Закрити")
+
+    layout.addWidget(label)
+    layout.addWidget(button)
+    window.setLayout(layout)
+
+    // Обробник кнопки через простий підхід: закриття вікна
+    // Сигнали/слоти краще робити з Python, але можна викликати методи напряму:
+    button.clicked.connect(window.close) //— цей виклик працює, але якщо будуть складні обробники,
+    // їх зручніше оформлювати у Python-модулі та імпортувати через import_py.
+
+    window.show()
+    app.exec()
+  }
+}

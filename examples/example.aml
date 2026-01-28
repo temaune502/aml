@@ -1,0 +1,145 @@
+// Приклад AML скрипту
+
+// Імпорт Python модулів
+import_py {
+    base
+    plugins\mouse
+    plugins\keyboard
+    console
+}
+
+// Імпорт AML модулів
+import_aml {
+    examples\other_script
+    examples\import_example
+}
+
+var xample_dict = {
+    e1 : "some",
+    e2 : "20me"
+}
+
+// Визначення змінних
+var greeting = "Hello, world!"
+var number1 = 10
+var number2 = 5
+var sum = number1 + number2
+
+// Виведення результатів
+console.print_colored(greeting, "green")
+console.print_line("Сума: " + base.to_str(sum))
+
+// Робота зі списками
+var my_list = [1, 2, 3, 4, 5]
+var new_list = base.append_to_list(my_list, 6)
+console.print_line("Список: " + base.to_str(new_list))
+
+// Додаткові операції зі списками
+base.insert_into_list(new_list, 1, 99)
+console.print_line("Після insert(1, 99): " + base.to_str(new_list))
+
+var idx = base.index_of(new_list, 4)
+console.print_line("Індекс елемента 4: " + idx)
+
+var has_42 = base.list_contains(new_list, 42)
+console.print_line("Містить 42: " + has_42)
+
+var sliced = base.slice_list(new_list, 1, 4)
+console.print_line("Слайс [1:4]: " + base.to_str(sliced))
+
+var ext = base.extend_list(new_list, [7, 8])
+console.print_line("Після extend([7,8]): " + base.to_str(ext))
+
+var conc = base.concat_lists([1, 2], [3, 4])
+console.print_line("concat([1,2],[3,4]): " + base.to_str(conc))
+
+var unique = base.unique_list([1, 2, 2, 3, 1, 4])
+console.print_line("unique([1,2,2,3,1,4]): " + base.to_str(unique))
+
+// Списки списків: індексація
+var nested = [[1, 2], [3, 4], [5, [6, 7]]]
+var v1 = nested[1][0]
+console.print_line("nested[1][0]: " + v1)
+var v2 = nested[2][1][1]
+console.print_line("nested[2][1][1]: " + v2)
+
+// Булеві літерали
+var t = True
+var f = False
+if (True) {
+    console.print_line("Булеве True працює")
+} else {
+    console.print_line("Це не повинно друкуватися")
+}
+console.print_line("Значення False: " + f)
+
+// Словник: перевірка побудови та виводу
+console.print_line("Словник: " + base.to_str(xample_dict))
+
+// Визначення функції
+func calculate_average(numbers) {
+    var sum = 0
+    var count = 0
+    
+    for num in numbers {
+        sum = sum + num
+        count = count + 1
+    }
+    
+    if (count == 0) {
+        return 0
+    } else {
+        return sum / count
+    }
+}
+
+// Виклик функції
+var average = calculate_average(my_list)
+console.print_line("Середнє значення: " + average)
+
+// Умовні оператори
+if (average > 3) {
+    console.print_colored("Середнє значення більше 3", "blue")
+} else {
+    console.print_colored("Середнє значення менше або дорівнює 3", "red")
+}
+
+// Цикли
+var i = 0
+while (i < 5) {
+    console.print_line("Ітерація: " + i)
+    i = i + 1
+}
+
+// Приклад з continue
+var j = 0
+while (j < 5) {
+    j = j + 1
+    if (j == 3) {
+        continue
+    }
+    console.print_line("Ітерація з continue: " + j)
+}
+
+// Робота з Python функціями
+var result = base.add(10, 20)
+console.print_line("Результат додавання: " + result)
+
+var mouse_controller = Python.MouseController()
+mouse_controller.move(100, 100)
+
+// Використання функцій з імпортованих модулів
+console.print_line("Натисніть будь-яку клавішу для завершення...")
+
+var key = keyboard.input_key()
+base.wait(0.1)
+console.print_line(key)
+
+// Приклад try-catch: перехоплення помилки ділення на нуль
+try {
+    var bad = base.divide(10, 0)
+    console.print_line("Це не має бути виведено")
+} catch {
+    console.print_line("Перехоплено помилку: " + error)
+}
+

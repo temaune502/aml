@@ -1,0 +1,22 @@
+// Базовий шаблон AML: meta, import base, namespace app.main
+
+import_py {
+  base,
+  console
+}
+
+meta {
+  version: "1.0.0",
+  entry: "app.main",
+  author: "",
+  created: "",
+  notes: "Початковий шаблон: доповніть імпорти та логіку"
+}
+
+namespace app {
+  func main() {
+    console.print_line("Hello, World!" )
+    // TODO: додайте ваш початковий код тут
+    // Наприклад: оголошення змінних, виклики функцій тощо
+  }
+}

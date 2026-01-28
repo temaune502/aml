@@ -1,0 +1,30 @@
+// Шаблон: Цикли та умовні оператори
+
+import_py {
+  console,
+  base
+}
+
+namespace loops_demo {
+  func main() {
+    var numbers = [1, 2, 3, 4, 5]
+
+    // for-in
+    for n in numbers {
+      if (n % 2 == 0) {
+        console.print_line("Парне: " + n)
+      } else {
+        console.print_line("Непарне: " + n)
+      }
+    }
+
+    // while
+    var i = 0
+    while (i < 3) {
+      console.print_line("i = " + i)
+      i = i + 1
+    }
+  }
+}
+
+loops_demo.main()

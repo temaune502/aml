@@ -1,0 +1,29 @@
+print("--- Arithmetic and Logic Test ---")
+
+var a = 10
+var b = 3
+
+print("Basic math:")
+print("10 + 3 =", a + b)
+print("10 - 3 =", a - b)
+print("10 * 3 =", a * b)
+print("10 / 3 =", a / b)
+print("10 % 3 =", a % b)
+print("10 ** 2 =", a ** 2)
+
+print("Comparison:")
+print("10 > 3:", a > b)
+print("10 < 3:", a < b)
+print("10 == 10:", a == 10)
+print("10 != 3:", a != b)
+
+print("Logical:")
+var t = true
+var f = false
+print("true and false:", t && f)
+print("true or false:", t || f)
+print("not true:", !t)
+
+// Complex expression
+var res = (a + b) * 2 > 20 && !f
+print("(10 + 3) * 2 > 20 and not false:", res)

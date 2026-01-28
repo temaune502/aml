@@ -1,0 +1,16 @@
+
+import_py { console, base }
+
+func sum_list(list){
+    console.print_line("List: " + base.to_str(list))
+    var result = 0
+    for item in list {
+        var num = base.to_int(item)
+        result = num + result
+    }
+    console.print_line("Result: " + base.to_str(result))
+    return result
+}
+
+var l = [1, 2, 3]
+sum_list(l)

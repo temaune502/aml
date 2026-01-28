@@ -1,0 +1,56 @@
+// AML Core SDK - Base automation patterns
+import_py { 
+    plugins.mouse as mouse, 
+    plugins.keyboard as keyboard, 
+    plugins.system as system, 
+    plugins.human_mouse as human_mouse 
+}
+
+// Global settings
+var default_speed = 3
+var human_mode = true
+
+func move(x, y, speed=null) {
+    var s = speed
+    if (s == null) {
+        s = default_speed
+    }
+    
+    if (human_mode) {
+        human_mouse.move_human_advanced(x, y, speed=s)
+    } else {
+        mouse.move(x, y)
+    }
+}
+
+func click(x=null, y=null, button="left") {
+    if (x != null && y != null) {
+        move(x, y)
+    }
+    mouse.click(button=button)
+}
+
+func type_text(text, delay=0.1) {
+    keyboard.type(text, delay=delay)
+}
+
+func press(key) {
+    keyboard.press(key)
+}
+
+func wait(seconds) {
+    system.sleep(seconds)
+}
+
+// Example of using the new 'args' list
+func log_args() {
+    print("Received arguments:", args)
+}
+
+// Global namespace initialization
+global.sdk_version = "1.0.0"
+global.is_initialized = true
+
+func get_status() {
+    return "SDK v" + global.sdk_version + " is active"
+}

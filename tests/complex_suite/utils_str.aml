@@ -1,0 +1,28 @@
+namespace StrUtils {
+    func concat(s1, s2) {
+        return s1 + s2
+    }
+
+    func to_upper_mock(s) {
+        // Mock implementation since we might not have string lib fully bound
+        return s + "_UPPER"
+    }
+
+    func prefix(s, pre) {
+        return pre + "_" + s
+    }
+    
+    func join(list, sep) {
+        var res = ""
+        var first = True
+        for item in list {
+            if (first) {
+                res = res + item
+                first = False
+            } else {
+                res = res + sep + item
+            }
+        }
+        return res
+    }
+}

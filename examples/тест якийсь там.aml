@@ -1,0 +1,15 @@
+meta{
+"entry":"app.main"
+}
+
+import_py {console as c}
+
+namespace app {
+    
+    func main (){
+        c.print_line("hell")
+        var x = meta["entry"]
+        c.print_line(x)
+}
+
+}

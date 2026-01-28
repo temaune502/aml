@@ -1,0 +1,28 @@
+print("--- Data Structures Test ---")
+
+// Lists
+var my_list = [10, 20, 30]
+print("Initial list:", my_list)
+my_list.append(40)
+print("After append:", my_list)
+print("Element at 1:", my_list[1])
+my_list[1] = 25
+print("After modification:", my_list)
+
+// Dictionaries
+var my_dict = {
+    "name": "AML",
+    "type": "DSL",
+    "version": 1.1
+}
+print("Initial dict:", my_dict)
+print("Name:", my_dict["name"])
+my_dict["status"] = "active"
+print("After adding status:", my_dict)
+
+// Iteration
+print("Iterating over dict:")
+// Note: for-in on dict in python usually gives keys
+for key in my_dict {
+    print(str(key) + " -> " + str(my_dict[key]))
+}

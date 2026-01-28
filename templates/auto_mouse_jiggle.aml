@@ -1,0 +1,37 @@
+// Шаблон: Періодичний рух мишкою (Mouse Jiggler)
+// Запобігає переходу системи в режим сну, рухаючи курсор.
+
+import_py {
+  console,
+  plugins\mouse,
+  base
+}
+
+namespace mouse_jiggler {
+  var interval_sec = 60 // Інтервал у секундах
+  var jiggle_pixels = 5   // На скільки пікселів рухати
+
+  func main() {
+    console.print_line("Запуск Mouse Jiggler... Інтервал: " + interval_sec + " сек.")
+    
+    while (True) {
+      // Отримати поточну позицію
+      var pos = mouse.get_mouse_position()
+      var x = pos[0]
+      var y = pos[1]
+
+      // Рух вправо
+      console.print_colored("Рухаю мишкою...", "blue")
+      mouse.move_mouse(x + jiggle_pixels, y)
+      base.wait(0.5)
+
+      // Повернення на місце
+      mouse.move_mouse(x, y)
+
+      console.print_colored("Чекаю " + interval_sec + " секунд...", "yellow")
+      base.wait(interval_sec)
+    }
+  }
+}
+
+mouse_jiggler.main()

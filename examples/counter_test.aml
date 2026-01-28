@@ -1,0 +1,29 @@
+// AML Macro Script
+import_py {
+  base,
+  console
+}
+
+meta {
+  version: "1.0.0",
+  entry: "app.main",
+  author: "",
+  created: "",
+  notes: "Макрос для автоматизації",
+  hotkey: "ctrl+1"
+}
+var count = 0
+namespace app {
+  func main() {
+    
+        while (True){
+            count = count + 1  
+            console.print_line("Макрос запущено!", base.to_str(count))
+            //base.sleep_ms(20)
+    // TODO: Додайте ваш код тут
+    }
+  }
+}
+
+// Запускаємо головну функцію
+app.main()

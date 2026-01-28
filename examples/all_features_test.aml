@@ -1,0 +1,185 @@
+meta {
+    author: "Trae AI",
+    description: "Comprehensive AML feature test",
+    version: "1.0",
+    entry: "main"
+}
+
+// 1. Imports
+import_py {
+    sys,
+    os as system,
+    math,
+    time,
+    console,
+    base
+}
+
+import_aml {
+    aml_moduls\namespaces_demo,
+    aml_moduls\string_utils
+}
+
+// 2. Global Variables & Data Types
+var global_counter = 0
+var pi_approx = 3.14159
+var app_name = "AML Test Suite"
+var is_active = True
+var null_val = null
+
+
+
+var numbers = [1..50]
+var config = {
+    "debug": True,
+    "max_retries": 3,
+    "timeout": 10.5
+}
+
+// 3. Functions
+func add(a, b) {
+    return a + b
+}
+
+func factorial(n) {
+    if (n <= 1) {
+        return 1
+    }
+    return n * factorial(n - 1)
+}
+
+func greet_local(name) {
+    return "Hello, " + name + "!"
+}
+
+// 4. Namespaces
+namespace Utils {
+    func square(x) {
+        return x * x
+    }
+    
+    var version = "1.0.0"
+}
+
+namespace App {
+    var name = "SuperApp"
+    
+    namespace Config {
+        var version = "2.0"
+        var env = "production"
+        
+        func get_full_info() {
+            // 'name' comes from outer App namespace (closure)
+            // 'version' comes from 'self' or closure
+            return name + " v" + version + " (" + env + ")"
+        }
+    }
+}
+
+// 5. Main Execution Logic
+func main() {
+    for (num in numbers){
+        console.print_line(base.to_str(num))
+    }
+    console.print_line("=== AML Comprehensive Test Started ===")
+    
+    // Test Variables
+    console.print_line("App: " + app_name)
+    console.print_line("Config debug: " + base.to_str(config["debug"]))
+    
+    // Test Null
+    if (null_val == null) {
+        console.print_line("null_val is correctly null")
+    }
+
+    // Test Arithmetic
+    var sum = add(10, 20)
+    console.print_line("10 + 20 = " + base.to_str(sum))
+    
+    var circle_area = pi_approx * Utils.square(5)
+    console.print_line("Circle area (r=5): " + base.to_str(circle_area))
+    
+    // Test Imported Modules
+    console.print_line("--- Imported Modules ---")
+    // From string_utils.aml
+    var p = path_join("home", "user")
+    console.print_line("Joined path: " + p)
+    greet("World (imported)") // Calls string_utils.greet
+
+    // From namespaces_demo.aml
+    counter.inc(10)
+    console.print_line("Counter value: " + base.to_str(counter.get()))
+    counter.mul(2)
+    console.print_line("Counter doubled: " + base.to_str(counter.value))
+
+    // Test Nested Namespaces
+    console.print_line("--- Nested Namespaces ---")
+    console.print_line("App Name: " + App.name)
+    console.print_line("App Config Info: " + App.Config.get_full_info())
+    
+    // Test Logic & Control Flow
+    console.print_line("--- Control Flow ---")
+    if (is_active && sum > 20) {
+        console.print_line("Condition met: Active and sum > 20")
+    } else {
+        console.print_line("Condition not met")
+    }
+    
+    var i = 0
+    console.print_line("While loop:")
+    while (i < 3) {
+        console.print_line("  i = " + base.to_str(i))
+        i += 1
+    }
+    
+    console.print_line("For loop (skipping 3):")
+    for (num in numbers) {
+        if (num == 3) {
+            continue
+        }
+        console.print_line("  num = " + base.to_str(num))
+    }
+    
+    // Test Recursion
+    var fact_5 = factorial(5)
+    console.print_line("Factorial of 5: " + base.to_str(fact_5))
+    
+    // Test Python Interop
+    console.print_line("--- Python Interop ---")
+    console.print_line("OS Name: " + system.name)
+    console.print_line("Sqrt(16): " + base.to_str(math.sqrt(16)))
+    
+    // Test Error Handling
+    console.print_line("--- Error Handling ---")
+    try {
+        var bad = 10 / 0
+        console.print_line("This should not print")
+    } catch {
+        console.print_line("Caught error successfully: " + error)
+    }
+    
+    // Test Concurrency
+    console.print_line("--- Concurrency ---")
+    
+    func heavy_task(id, delay) {
+        console.print_line("Task " + base.to_str(id) + " started (sleep " + base.to_str(delay) + ")")
+        time.sleep(delay)
+        console.print_line("Task " + base.to_str(id) + " finished")
+        return "Result " + base.to_str(id)
+    }
+    
+    // Spawn single task
+    var handle = spawn heavy_task(1, 0.5)
+    
+    // Parallel block
+    parallel {
+        heavy_task(2, 0.3)
+        heavy_task(3, 0.2)
+    }
+    
+    // Wait for spawned task
+    var res = handle.join()
+    console.print_line("Spawned task result: " + base.to_str(res))
+    
+    console.print_line("=== Test Completed ===")
+}

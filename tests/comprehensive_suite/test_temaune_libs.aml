@@ -1,0 +1,38 @@
+// Тест базових бібліотек AML
+var math = import("temaune/math/core")
+var str = import("temaune/string/utils")
+var list = import("temaune/collections/list")
+var io = import("temaune/io/console")
+
+func main() {
+    io.info("Запуск тесту базових бібліотек AML...")
+
+    // Тест Math
+    var a = -10
+    var b = 20
+    io.print("Math tests:")
+    io.print("  abs(-10) = " + math.abs(a))
+    io.print("  max(-10, 20) = " + math.max(a, b))
+    io.print("  sum([1, 2, 3]) = " + math.sum([1, 2, 3]))
+
+    // Тест String
+    var s = "  Hello AML World  "
+    io.print("String tests:")
+    io.print("  trim: '" + str.trim(s) + "'")
+    io.print("  upper: " + str.upper(s))
+    io.print("  contains 'AML': " + str.contains(s, "AML"))
+
+    // Тест List
+    var my_list = [3, 1, 4]
+    list.append(my_list, 2)
+    io.print("List tests:")
+    io.print("  list after append(2): " + my_list)
+    list.sort(my_list)
+    io.print("  sorted list: " + my_list)
+    io.print("  first: " + list.first(my_list))
+    io.print("  last: " + list.last(my_list))
+
+    io.success("Всі тести завершені!")
+}
+
+main()

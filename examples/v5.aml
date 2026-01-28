@@ -1,0 +1,84 @@
+import_py {
+  base,
+  console,
+  plugins\keyboard
+}
+
+// Приклад крапкових присвоєнь: a.b.c = 10
+namespace a {
+  namespace b {
+    var x2 = "hello"
+    // тіло порожнє — створюємо простір імен для демонстрації
+    func b_space (){
+      console.print_colored(x2, "red")
+    }
+
+  }
+}
+
+// Крапкові присвоєння у вкладений namespace
+a.b.c = 10
+console.print_line("a.b.c = " + base.to_str(a.b.c))
+
+// Переприсвоєння
+a.b.c = 25
+console.print_line("a.b.c (після переприсвоєння) = " + base.to_str(a.b.c))
+
+// Додатково: присвоєння у новий атрибут
+a.b.message = "hello"
+console.print_line("a.b.message = " + a.b.message)
+
+// Розширені присвоєння (+=) і перевірка в умовах та циклах
+// Простий +=
+a.b.c += 1
+console.print_line("a.b.c (після += 1) = " + base.to_str(a.b.c))
+
+// В умовному операторі
+if (a.b.c == 26) {
+  a.b.c += 5
+}
+console.print_line("a.b.c (після if += 5) = " + base.to_str(a.b.c))
+
+// У циклі while
+var i = 0
+while (i < 3) {
+  a.b.c += 1
+  i = i + 1
+}
+a.b.b_space()
+console.print_line("a.b.c (після циклу while) = " + base.to_str(a.b.c))
+
+// Демонстрація для масивів та словників з індексацією
+a.b.list = [1, 2, 3]
+console.print_line("list старт: " + base.to_str(a.b.list))
+a.b.list[1] -= 1
+a.b.list[0] *= 3
+a.b.list[2] /= 2
+a.b.list[2] %= 2
+console.print_line("list після -=, *=, /=, %= : " + base.to_str(a.b.list))
+
+a.b.map = { "key": 10, "other": 3 }
+console.print_line("map старт: " + base.to_str(a.b.map))
+a.b.map["key"] += 1
+a.b.map["other"] *= 2
+console.print_line("map після += та *= : " + base.to_str(a.b.map))
+
+// Інші оператори складання присвоєнь
+var x = 10
+x //= 3
+console.print_line("x після //= 3: " + base.to_str(x))
+
+var y = 2
+y **= 5
+console.print_line("y після **= 5: " + base.to_str(y))
+
+var ok = True
+ok &&= False
+console.print_line("ok після &&= False: " + base.to_str(ok))
+
+var flag = False
+flag ||= True
+console.print_line("flag після ||= True: " + base.to_str(flag))
+while (False){
+  console.print_colored(keyboard.input_key(), "blue")
+}

@@ -1,0 +1,19 @@
+import_py {
+    console
+}
+console.print_line("namespace_demo init")
+namespace counter {
+    var value = 0
+    func inc(step=1){
+        self.value += step
+    }
+    func get(){
+        return self.value
+    }
+}
+func counter.mul(k=2){
+    self.value *= k
+}
+func reset_counter(){
+    counter.value = 0
+}

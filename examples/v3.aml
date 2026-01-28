@@ -1,0 +1,59 @@
+
+import_py {
+  base,
+  console,
+  plugins\json,
+  plugins\http,
+  plugins\regex,
+  plugins\datetime,
+}
+func func_from_aml(){
+    console.print_colored("some message", "red")
+}
+func main(){
+  console.print_line("=== Демонстрація модулів: JSON, HTTP, Regex, Datetime ===")
+
+  // JSON
+  var obj = {
+    "name": "AML",
+    "version": 2,
+    "features": ["json", "http", "regex", "datetime"]
+  }
+  var s = json.stringify(obj, 2)
+  console.print_line("JSON -> рядок:")
+  console.print_line(s)
+  var parsed = json.parse(s)
+  console.print_line("Розпарсений name: " + parsed["name"])  // доступ до ключів словника
+
+  // HTTP GET
+  var resp = http.get("https://example.com")
+  if (resp["ok"] == True) {
+    console.print_line("HTTP статус: " + base.to_str(resp["status"]))
+    console.print_line("Текст (перші 80 символів):")
+    console.print_line(base.string_slice(resp["text"], 0, 80))
+  } else {
+    console.print_line("HTTP помилка: " + base.to_str(resp["error"]))
+  }
+
+  // Regex
+  var text = "abc123xyz"
+  var has_digits = regex.matches("\\d+", text)
+  console.print_line("Є цифри (fullmatch)? " + base.to_str(has_digits))
+  var found = regex.search("(\\d+)", text)
+  if (found) {
+    console.print_line("Знайдено: " + found["match"] + ", групи: " + base.to_str(found["groups"]))
+  }
+  var all = regex.findall("[a-z]+|\\d+", text)
+  console.print_line("findall: " + base.to_str(all))
+  var replaced = regex.replace("\\d+", "NUM", text)
+  console.print_line("replace: " + replaced)
+
+  // Datetime
+  console.print_line("ISO зараз (UTC): " + datetime.now_iso())
+  console.print_line("Локальний формат: " + datetime.format_now("%d.%m.%Y %H:%M:%S"))
+  var ts = datetime.timestamp()
+  console.print_line("Timestamp: " + base.to_str(ts))
+  console.print_line("Формат із timestamp: " + datetime.format_timestamp(ts, "%Y-%m-%d %H:%M"))
+}
+
+main()

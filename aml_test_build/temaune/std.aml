@@ -1,0 +1,31 @@
+// Стандартна бібліотека AML (temaune)
+// Імпортує всі основні модулі для швидкого доступу
+import_py {base}
+var math = import("temaune/math/core")
+var str = import("temaune/string/utils")
+var list = import("temaune/collections/list")
+var dict = import("temaune/collections/dict")
+var io = import("temaune/io/console")
+var file = import("temaune/io/file")
+var sys = import("temaune/sys/env")
+var http = import("temaune/net/http")
+var net = import("temaune/net/local")
+var json = import("temaune/util/json")
+var rnd = import("temaune/util/random")
+var dt = import("temaune/util/datetime")
+var re = import("temaune/util/regex")
+var conv = import("temaune/util/convert")
+var event = import("temaune/sys/event")
+var kb = import("temaune/ui/keyboard")
+var hk = import("temaune/ui/hotkey")
+var base = base
+// Додаткові утиліти загального призначення
+// Повертає назву типу об'єкта
+func get_type(x) {
+    return type(x)
+}
+
+// Виводить повідомлення у консоль (через модуль io)
+func print(msg) {
+    io.print(msg)
+}

@@ -1,0 +1,56 @@
+// Логіка клікера
+import_py { plugins.mouse, plugins.system, plugins.console_utils, plugins.event_system, plugins.random }
+
+namespace state {
+    var active = false
+    var interval = 0.1
+    var human_like = true
+}
+
+func click_loop() {
+    console_utils.print_line("[Clicker] Цикл кліків запущено")
+    while (state.active) {
+        mouse.click_mouse()
+        
+        var sleep_time = state.interval
+        if (state.human_like) {
+            // Додаємо невеликий випадковий розкид +- 20%
+            var jitter = random.uniform(-0.02, 0.02)
+            sleep_time = sleep_time + jitter
+            if (sleep_time < 0.01) {
+                sleep_time = 0.01
+            }
+        }
+        
+        system.sleep(sleep_time)
+    }
+    console_utils.print_line("[Clicker] Цикл кліків зупинено")
+}
+
+func handle_toggle(data) {
+    state.active = data.active
+    if (data.interval) {
+        state.interval = data.interval
+    }
+    
+    if (state.active) {
+        console_utils.print_line("[Clicker] Активація...")
+        spawn click_loop()
+    } else {
+        console_utils.print_line("[Clicker] Деактивація...")
+    }
+}
+
+func init() {
+    event_system.subscribe("toggle_clicker", handle_toggle)
+    console_utils.print_line("[Clicker] Модуль логіки готовий")
+}
+
+func get_state() {
+    return state
+}
+
+return {
+    "init": init,
+    "get_state": get_state
+}

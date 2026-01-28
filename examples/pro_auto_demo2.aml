@@ -1,0 +1,14 @@
+import_py { plugins/pro_automation as pro_automation, console, base }
+
+// Зміна розкладки на українську
+//pro_automation.set_keyboard_layout("ua")
+//console.print_line("Поточна розкладка: " + pro_automation.get_keyboard_layout())
+
+// Налаштування яскравості та звуку
+//pro_automation.set_brightness(10)
+//base.wait(1)
+pro_automation.set_brightness(100)
+pro_automation.set_volume(50)
+pro_automation.set_volume(100)
+// Вимкнення монітора
+//pro_automation.monitor_off()

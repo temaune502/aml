@@ -1,0 +1,31 @@
+func factorial(n) {
+    if (n <= 1) {return 1} else {return n * factorial(n - 1)}
+}
+
+func apply_op(a, b, op) {
+    return op(a, b)
+}
+
+func add(x, y) { return x + y }
+func mul(x, y) { return x * y }
+
+print("--- Functions and Recursion Test ---")
+print("Factorial of 5:", factorial(5))
+print("5 + 3 =", apply_op(5, 3, add))
+print("5 * 3 =", apply_op(5, 3, mul))
+
+//  Test with default arguments
+func greet(name, msg="Hello") {
+    print(msg + ", " + name + "!")
+}
+
+greet("Alice")
+greet("Bob", "Good morning")
+
+// Kwargs test
+func create_user(username, email, active=true) {
+    print("User: " + username + " <" + email + "> Active: " + str(active))
+}
+
+create_user(username="tema", email="test@test.com")
+create_user(active=false, username="guest", email="guest@test.com")

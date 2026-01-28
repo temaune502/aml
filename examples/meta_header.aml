@@ -1,0 +1,17 @@
+import_py { console }
+
+// Шаблон метаданих для AML файлу
+meta {
+  version: "1.0.0",
+  entry: "app.main",
+  author: "Ваше ім’я",
+  created: "2025-11-02",
+  notes: "Шаблон з meta блоком"
+}
+
+namespace app {
+  func main() {
+    console.print_line("MAIN START")
+    console.print_line("Версія: " + meta["version"]) // доступ до метаданих
+  }
+}

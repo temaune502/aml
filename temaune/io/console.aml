@@ -1,0 +1,32 @@
+// Модуль для роботи з консоллю
+import_py { console, base }
+
+// Виводить повідомлення у консоль
+func print(msg) {
+    console.print_line(base.to_str(msg))
+}
+
+// Виводить повідомлення про помилку (червоним кольором)
+func error(msg) {
+    console.print_colored("ERROR: " + base.to_str(msg), "red")
+}
+
+// Виводить повідомлення про успіх (зеленим кольором)
+func success(msg) {
+    console.print_colored("SUCCESS: " + base.to_str(msg), "green")
+}
+
+// Виводить інформаційне повідомлення (блакитним кольором)
+func info(msg) {
+    console.print_colored("INFO: " + base.to_str(msg), "cyan")
+}
+
+// Виводить попередження (жовтим кольором)
+func warn(msg) {
+    console.print_colored("WARNING: " + base.to_str(msg), "yellow")
+}
+
+// Читає введення користувача з консолі
+func read(prompt="") {
+    return base.read(prompt)
+}

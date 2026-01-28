@@ -1,0 +1,26 @@
+print("--- Parallel Execution Test ---")
+import_py {base}
+func heavy_task(id, delay) {
+    import_py { time }
+    print("Task " + str(id) + " started")
+    time.sleep(delay)
+    print("Task " + str(id) + " finished")
+    return "Result " + str(id)
+}
+
+parallel {
+    var t1 = spawn heavy_task(1, 0.5)
+    var t2 = spawn heavy_task(2, 0.3)
+    var t3 = spawn heavy_task(3, 0.1)
+}
+
+print("Parallel block finished (synchronous join by default in parallel block)")
+
+// Explicit spawn and join
+var handle = spawn heavy_task(4, 0.2)
+print("Spawned task 4, doing other work...")
+while (handle.done) {
+    base.wait(0.1)
+
+}
+print("Task 4 joined with result: " + str(handle.result))

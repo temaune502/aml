@@ -1,0 +1,29 @@
+// Приклад AML модуля для імпорту
+import_py{
+    base,
+    console
+}
+console.print_line("INIT other_script")
+// Визначення змінних
+var module_greeting = "Привіт з іншого модуля!"
+
+// Визначення функцій
+func say_hello(name) {
+    return "Привіт, " + name + "!"
+}
+
+func multiply(a, b) {
+    return a * b
+}
+
+// Визначення списку
+var module_list = [10, 20, 30, 40, 50]
+
+// Функція для роботи зі списком
+func sum_list(list) {
+    var total = 0
+    for item in list {
+        total = total + item
+    }
+    return total
+}

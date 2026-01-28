@@ -1,0 +1,106 @@
+// Точка входу в комплексну програму
+var std = import("temaune/std")
+var logic = import("complex_test/logic")
+var tasks = import("complex_test/system_tasks")
+
+// 1. Визначаємо функції обробники (Handlers) до їх використання як колбеків
+func on_report_created(data) {
+    std.io.print("--- КОЛБЕК ---")
+    std.io.print("Звіт успішно створено!")
+    std.io.print("Файл: " + data.path)
+    std.io.print("Час: " + data.timestamp)
+    std.io.print("--------------")
+}
+
+func on_error_occured(err) {
+    std.io.print("!!! ПОМИЛКА !!!")
+    std.io.print("Повідомлення: " + err.msg)
+}
+
+func on_hotkey_pressed(data) {
+    std.io.print("[Hotkey] Натиснуто гарячу клавішу: " + data.key)
+}
+
+// 2. Основна логіка
+func main() {
+    std.io.print("=== Запуск комплексного тесту AML ===")
+    
+    // Реєструємо колбеки в системі подій
+    std.event.on("report_done", on_report_created)
+    std.event.on("sys_error", on_error_occured)
+    std.event.on("hk_triggered", on_hotkey_pressed)
+    global.t = tasks
+    
+    // Реєстрація гарячої клавіші (симуляція події)
+    // У реальному середовищі це б чекало натискання, тут ми просто реєструємо
+    var hk_id = std.hk.register("ctrl+shift+z", on_hotkey_pressed)
+    std.io.print("[Hotkey] Зареєстровано гарячу клавішу ID: " + std.conv.to_str(hk_id))
+
+    // Робота з даними (logic.aml)
+    var my_nums = [1, 5, 8, 10, 15, 20, 3]
+    var num_stats = logic.process_numbers(my_nums)
+    
+    // Додаткова математика
+    var root = std.math.sqrt(625)
+    var power = std.math.pow(2, 10)
+    std.io.print("Математика: sqrt(625)=" + std.conv.to_str(root) + ", 2^10=" + std.conv.to_str(power))
+    
+    std.io.print("Статистика чисел готова. Сума квадратів парних: " + std.conv.to_str(num_stats.sum))
+    
+    // 2. Аналіз тексту
+    var text_results = logic.analyze_text("AML is powerful, flexible and fast language!")
+    std.io.print("Аналіз тексту: знайдено " + std.conv.to_str(text_results.word_count) + " слів.")
+
+    // 3. Валідація та конвертація (НОВЕ)
+    var raw_data = ["100", "abc", "200", "test"]
+    var validated = logic.validate_and_convert(raw_data)
+    std.io.print("Валідація: чисел - " + std.conv.to_str(validated.stats.numbers) + ", рядків - " + std.conv.to_str(validated.stats.strings))
+
+    // 4. Системна інформація та оточення (НОВЕ)
+    var sys_info = tasks.get_sys_info()
+    var env_info = tasks.check_environment()
+    std.io.print("Система: " + sys_info.os + " (" + sys_info.time + ")")
+    std.io.print("Користувач: " + env_info.user)
+
+    // 5. Робота з мережею та JSON (НОВЕ)
+    var random_data = logic.generate_random_report(3)
+    var server_resp = tasks.sync_with_server(random_data)
+
+    // 6. Робота з клавіатурою та гарячими клавішами (Симуляція) (НОВЕ)
+    std.io.print("[Keyboard] Симуляція введення тексту...")
+    std.kb.type("Hello from AML!")
+    
+    // 7. Створення фінального звіту
+    var final_data = {
+        "stats": num_stats,
+        "text": text_results,
+        "env": env_info,
+        "server_status": "synced"
+    }
+    var path = tasks.save_report("final_results", final_data)
+
+    // 8. Операції з ФС (НОВЕ)
+    tasks.manage_files()
+    
+    // 9. Активуємо подію вручну
+    tasks.trigger_system_event("report_done", {
+        "path": path,
+        "timestamp": std.dt.format_now()
+    })
+    
+    // Активуємо гарячу клавішу вручну (для тесту колбека)
+    tasks.trigger_system_event("hk_triggered", {"key": "ctrl+shift+86"})
+    
+    // Приклад виклику помилки для демонстрації іншого колбека
+    if (num_stats.sum < 0) {
+        tasks.trigger_system_event("sys_error", {"msg": "Від'ємна сума"})
+    }
+    
+    std.io.print("=== Тест завершено успішно ===")
+}
+
+// Запуск
+main()
+while (True){
+    std.base.wait(0.1)
+}

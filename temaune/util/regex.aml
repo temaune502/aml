@@ -1,0 +1,25 @@
+// Модуль для роботи з регулярними виразами
+// Використовує плагін plugins/regex.py
+import_py{plugins.regex as _re}
+
+// Перевіряє, чи текст повністю відповідає шаблону
+func matches(pattern, text) {
+    return _re.matches(pattern, text)
+}
+
+// Знаходить перший збіг у тексті
+// Повертає словник {match, span, groups} або null
+func search(pattern, text) {
+    return _re.search(pattern, text)
+}
+
+// Знаходить всі збіги у тексті
+// Повертає список знайдених рядків або списків груп
+func find_all(pattern, text) {
+    return _re.findall(pattern, text)
+}
+
+// Замінює входження шаблону у тексті на новий рядок
+func replace(pattern, repl, text, count = 0) {
+    return _re.replace(pattern, repl, text, count)
+}

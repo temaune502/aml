@@ -1,0 +1,13 @@
+import_py { system }
+
+// Test tick and spec.tick
+func my_tick() {
+    print("Tick event! spec.tick =", spec.tick)
+}
+
+print("Starting tick test...")
+tick(@my_tick, 5) // 5 times per second
+
+// Wait for a bit
+system.sleep(2)
+print("Tick test finished.")

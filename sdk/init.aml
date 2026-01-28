@@ -1,0 +1,19 @@
+// AML SDK Initialization
+var core = import("sdk/core")
+var files = import("sdk/files")
+var ui = import("sdk/ui")
+var input = import("sdk/input")
+var events = import("sdk/events")
+var utils = import("sdk/utils")
+
+import_py { base }
+
+// Global access to some core functions
+global.base = base
+global.move = core.move
+global.click = core.click
+global.wait = core.wait
+global.type = core.type_text
+global.drag = input.drag
+
+print("AML SDK Initialized successfully")

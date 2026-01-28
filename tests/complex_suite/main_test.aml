@@ -1,0 +1,30 @@
+import_aml { 
+    tests\complex_suite\app,
+    tests\complex_suite\utils_str,
+    tests\complex_suite\logger
+}
+import_py { console }
+
+namespace Test {
+    func run_all() {
+        Log.log_level = "DEBUG"
+        console.print_line("=== Starting Complex Suite Test ===")
+        
+        var success = App.run_workflow()
+        
+        if (success) {
+            console.print_line(StrUtils.prefix("SUCCESS", "TEST"))
+        } else {
+            console.print_line(StrUtils.prefix("FAILED", "TEST"))
+            // We want to simulate a failure if it returns False, but here we expect True
+        }
+        
+        // Additional check
+        var s = StrUtils.concat("Hello", "World")
+        if (s != "HelloWorld") {
+             console.print_line("Fail: StrUtils.concat")
+        }
+    }
+}
+
+Test.run_all()

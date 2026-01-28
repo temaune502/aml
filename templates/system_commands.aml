@@ -1,0 +1,24 @@
+// Шаблон: Виконання системних команд
+
+import_py {
+  console,
+  plugins\system
+}
+
+namespace sys_demo {
+  func main() {
+    // На Windows приклад: перерахунок файлів у поточній директорії
+    var res = system.run("Get-ChildItem")
+    console.print_line("Код: " + res["code"]) 
+    console.print_line("Stdout:\n" + res["output"]) 
+    if (res["error"] != "") {
+      console.print_line("Stderr:\n" + res["error"]) 
+    }
+
+    // Приклад через shell (пайпінг)
+    var pipe = system.run_shell("echo hello | findstr h")
+    console.print_line("PIPE stdout: " + pipe["output"]) 
+  }
+}
+
+sys_demo.main()

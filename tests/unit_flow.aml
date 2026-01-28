@@ -1,0 +1,21 @@
+meta { entry: "main" }
+import_py { console, base }
+
+func main() {
+    var sum = 0
+    for (i in [1, 2, 3, 4, 5]) {
+        if (i == 3) { continue }
+        if (i == 5) { break }
+        sum = sum + i
+    }
+    // 1 + 2 + 4 = 7
+    if (sum != 7) { console.print_line("Fail: loop flow. Sum=" + base.to_str(sum)) }
+    
+    var j = 0
+    while (j < 5) {
+        j = j + 1
+    }
+    if (j != 5) { console.print_line("Fail: while loop") }
+    
+    console.print_line("Flow test done")
+}

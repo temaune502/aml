@@ -1,0 +1,15 @@
+// Стандартна бібліотека AML (temaune) - Macro Version
+// Імпортує лише модулі автоматизації
+import_py {base}
+var auto = import("temaune/automation/core")
+var base = base
+
+// Псевдоніми для автоматизації
+func move(x, y, speed=null) { return auto.move(x, y, speed=speed) }
+func click(x=null, y=null, button="left") { return auto.click(x=x, y=y, button=button) }
+func wait(seconds) { return auto.wait(seconds) }
+// Використовуємо глобальний print інтерпретатора
+func print(msg) {
+	global.print(msg)
+}
+

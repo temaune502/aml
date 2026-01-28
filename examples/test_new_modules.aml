@@ -1,0 +1,44 @@
+import_py {
+    console,
+    convert,
+    test_types
+}
+
+func main() {
+    // console.clear()
+    console.set_title("AML New Modules Test")
+    
+    console.color_log("--- Console Module Test ---", "cyan")
+    console.print_line("Hello from console module!")
+    
+    console.color_log("--- Convert Module Test ---", "yellow")
+    
+    var s = "123.45"
+    var f = convert.to_float(s)
+    var i = convert.to_int(s)
+    
+    console.print_line("String: ", s)
+    console.print_line("To Float: ", convert.to_str(f))
+    console.print_line("To Int: ", convert.to_str(i))
+    
+    var b_str = "yes"
+    var b = convert.to_bool(b_str)
+    console.print_line("Bool 'yes' to bool: ", convert.to_str(b))
+    
+    console.color_log("--- Python Complex Types Test ---", "green")
+    var complex_data = test_types.get_complex_types()
+    var aml_data = convert.to_aml(complex_data)
+    
+    console.print_line("Original Python data (dict keys): ", convert.get_type(complex_data))
+    console.print_line("Converted data: ", convert.to_str(aml_data))
+    
+    console.print_line("Tuple converted to: ", convert.get_type(aml_data["tuple"]))
+    console.print_line("Set converted to: ", convert.get_type(aml_data["set"]))
+    console.print_line("Complex converted to: ", convert.get_type(aml_data["complex"]))
+    console.print_line("Bytes converted to: ", aml_data["bytes"])
+    console.print_line("Date converted to: ", aml_data["date"])
+    
+    console.color_log("Test completed!", "magenta")
+}
+
+main()

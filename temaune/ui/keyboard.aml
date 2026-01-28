@@ -1,0 +1,37 @@
+// Модуль для роботи з клавіатурою
+// Використовує плагін plugins/keyboard.py
+
+import_py "plugins.keyboard" as _kb
+
+// Натиснути клавішу (press + release)
+func press(key) {
+    _kb.press_key(key)
+}
+
+// Затиснути клавішу
+func hold(key) {
+    _kb.hold_key(key)
+}
+
+// Відпустити клавішу
+func release(key) {
+    _kb.release_key(key)
+}
+
+// Набрати текст
+func type(text) {
+    _kb.type_text(text)
+}
+
+// Натиснути комбінацію клавіш (наприклад, "ctrl", "shift", "a")
+func hotkey(k1, k2 = null, k3 = null, k4 = null) {
+    if (k4 != null) { return _kb.hotkey(k1, k2, k3, k4) }
+    if (k3 != null) { return _kb.hotkey(k1, k2, k3) }
+    if (k2 != null) { return _kb.hotkey(k1, k2) }
+    return _kb.hotkey(k1)
+}
+
+// Очікувати натискання будь-якої клавіші та повернути її назву
+func wait_key() {
+    return _kb.input_key()
+}

@@ -1,0 +1,169 @@
+// Модуль для роботи зі списками
+import_py { base }
+
+// Додає елемент у кінець списку
+func append(lst, item) {
+    return base.append_to_list(lst, item)
+}
+
+// Вставляє елемент у список за вказаним індексом
+func insert(lst, index, item) {
+    return base.insert_into_list(lst, index, item)
+}
+
+// Видаляє перше входження елемента зі списку
+func remove(lst, item) {
+    return base.remove_from_list(lst, item)
+}
+
+// Видаляє та повертає елемент за індексом
+func pop(lst, index) {
+    return base.pop_from_list(lst, index)
+}
+
+// Перевіряє, чи містить список вказаний елемент
+func contains(lst, item) {
+    return base.list_contains(lst, item)
+}
+
+// Сортує список
+func sort(lst) {
+    return base.sort_list(lst)
+}
+
+// Змінює порядок елементів у списку на протилежний
+func reverse(lst) {
+    return base.reverse_list(lst)
+}
+
+// Повертає зріз списку
+func slice(lst, start, end=null, step=1) {
+    return base.slice_list(lst, start, end, step)
+}
+
+// Повертає довжину списку
+func length(lst) {
+    return base.lenn(lst)
+}
+
+// Повертає перший елемент списку
+func first(lst) {
+    if (base.lenn(lst) > 0) {
+        return lst[0]
+    }
+    return null
+}
+
+// Повертає останній елемент списку
+func last(lst) {
+    var l = base.lenn(lst)
+    if (l > 0) {
+        return lst[l - 1]
+    }
+    return null
+}
+
+// Створює новий список, застосовуючи функцію до кожного елемента
+func map(lst, callback) {
+    var result = []
+    for (item in lst) {
+        base.append_to_list(result, callback(item))
+    }
+    return result
+}
+
+// Створює новий список з елементів, що задовольняють умову
+func filter(lst, callback) {
+    var result = []
+    for (item in lst) {
+        if (callback(item)) {
+            base.append_to_list(result, item)
+        }
+    }
+    return result
+}
+
+// Знаходить перший елемент, що задовольняє умову
+func find(lst, callback) {
+    for (item in lst) {
+        if (callback(item)) {
+            return item
+        }
+    }
+    return null
+}
+
+// Згортає список у одне значення за допомогою функції
+func reduce(lst, callback, initial=null) {
+    var acc = initial
+    var start_idx = 0
+    if (acc == null) {
+        if (base.lenn(lst) == 0) { return null }
+        acc = lst[0]
+        start_idx = 1
+    }
+    
+    var i = start_idx
+    var l = base.lenn(lst)
+    while (i < l) {
+        acc = callback(acc, lst[i])
+        i = i + 1
+    }
+    return acc
+}
+
+// Повертає список з унікальних елементів
+func unique(lst) {
+    var res = []
+    for (item in lst) {
+        if (contains(res, item) == false) {
+            append(res, item)
+        }
+    }
+    return res
+}
+
+// Рекурсивно перетворює вкладені списки у плоский список
+func flatten(lst) {
+    var res = []
+    for (item in lst) {
+        if (base.get_type(item) == "list") {
+            var sub = flatten(item)
+            for (s in sub) { 
+                append(res, s) 
+            }
+        } else {
+            append(res, item)
+        }
+    }
+    return res
+}
+
+// Перетворює вкладені списки у плоский список (лише один рівень)
+func shallow_flatten(lst) {
+    var res = []
+    for (item in lst) {
+        if (base.get_type(item) == "list") {
+            for (s in item) { append(res, s) }
+        } else {
+            append(res, item)
+        }
+    }
+    return res
+}
+
+// Об'єднує два списки у список пар
+func zip(a, b) {
+    var res = []
+    var l1 = base.lenn(a)
+    var l2 = base.lenn(b)
+    var min_l = l1
+    if (l2 < l1) { min_l = l2 }
+    
+    var i = 0
+    while (i < min_l) {
+        append(res, [a[i], b[i]])
+        i = i + 1
+    }
+    return res
+}

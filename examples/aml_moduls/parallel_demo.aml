@@ -1,0 +1,14 @@
+import_py {
+    console
+}
+console.print_line("parallel init")
+func slow_add(a, b){
+    return a + b
+}
+func parallel_run(){
+    var t1 = spawn slow_add(1, 2)
+    var t2 = spawn slow_add(5, 7)
+    var r1 = t1.join()
+    var r2 = t2.join()
+    return r1 + r2
+}

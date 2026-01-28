@@ -1,0 +1,36 @@
+import_aml { tests\complex_suite\utils_math }
+import_py { base }
+
+namespace Data {
+    func process_numbers(list) {
+        var sum = 0
+        for n in list {
+            sum = MathUtils.add(sum, n)
+        }
+        return sum
+    }
+    
+    func filter_positive(list) {
+        var res = []
+        for n in list {
+            if (n > 0) {
+                base.append_to_list(res, n)
+            }
+        }
+        return res
+    }
+    
+    func get_stats(list) {
+        var sum = process_numbers(list)
+        var count = base.len(list)
+        var avg = 0
+        if (count > 0) {
+            avg = MathUtils.div_safe(sum, count)
+        }
+        return {
+            "sum": sum,
+            "count": count,
+            "avg": avg
+        }
+    }
+}

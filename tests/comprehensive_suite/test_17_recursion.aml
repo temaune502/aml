@@ -1,0 +1,16 @@
+print("--- Recursion Depth and Tail-like Test ---")
+
+func count_down(n) {
+    if (n == 0) {return "Done"}
+    // Not tail call optimized in many interpreters, testing limit
+    return count_down(n - 1)
+}
+
+print("Counting down from 100:", count_down(100))
+
+func fibonacci(n) {
+    if (n <= 1) {return n}
+    return fibonacci(n - 1) + fibonacci(n - 2)
+}
+
+print("Fibonacci of 10:", fibonacci(10))

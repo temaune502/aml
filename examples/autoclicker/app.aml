@@ -1,0 +1,68 @@
+// Головний файл автоклікера
+import_py { plugins.pro_automation, plugins.console_utils, plugins.event_system, plugins.system }
+
+var clicker = import("autoclicker/clicker")
+
+namespace app_state {
+    var is_running =false
+    var click_interval = 0.5
+}
+
+func on_hotkey_pressed() {
+    app_state.is_running = !app_state.is_running
+    
+    var status = "ВИМКНЕНО"
+    if (app_state.is_running) {
+        status = "УВІМКНЕНО"
+    }
+    
+    console_utils.print_line(">>> Автоклікер: " + status + " (інтервал: " + str(app_state.click_interval) + "с)")
+    
+    // Надсилаємо подію в модуль логіки
+    event_system.emit("toggle_clicker", {
+        "active": app_state.is_running,
+        "interval": app_state.click_interval
+    })
+}
+
+func command_listener() {
+    while (true) {
+        // У AML вбудована функція input() поки не дуже стабільна в spawn, 
+        // тому просто покажемо, як можна міняти параметри через події
+        system.sleep(5.0)
+        // console_utils.print_line("[System] Підказка: Ви можете змінити швидкість через event_system")
+    }
+}
+
+func main() {
+    console_utils.print_line("======================================")
+    console_utils.print_line("   AML Автоклікер v1.0")
+    console_utils.print_line("   Гаряча клавіша: F6")
+    console_utils.print_line("   Вихід: Ctrl+C в консолі")
+    console_utils.print_line("======================================")
+    
+    // Ініціалізуємо модуль логіки
+    clicker.init()
+    
+    // Реєструємо гарячу клавішу F6
+    var hk_id = pro_automation.register_hotkey("F6", on_hotkey_pressed)
+    
+    if (hk_id) {
+        console_utils.print_line("[App] Гарячу клавішу F6 успішно зареєстровано")
+    } else {
+        console_utils.print_line("[App] Помилка реєстрації гарячої клавіші!")
+        return
+    }
+    
+    console_utils.print_line("[App] Програма працює. Натисніть F6 для старту/стопу.")
+    
+    // Запускаємо фоновий слухач команд (опціонально)
+    spawn command_listener()
+    
+    // Нескінченний цикл, щоб програма не завершилась
+    while (true) {
+        system.sleep(1.0)
+    }
+}
+
+main()

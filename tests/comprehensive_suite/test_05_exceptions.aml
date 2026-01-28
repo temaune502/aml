@@ -1,0 +1,41 @@
+print("--- Exceptions and Errors Test ---")
+
+func risky_operation(fail) {
+    if (fail) {
+        raise "Something went wrong!"
+    }
+    return "Success"
+}
+
+try {
+    print("Trying safe operation...")
+    print(risky_operation(false))
+} catch (e) {
+    print("Should not be here: " + e)
+}
+
+try {
+    print("Trying risky operation...")
+    risky_operation(true)
+} catch (err) {
+    print("Caught error: " + err)
+}
+
+// Nested try-catch
+try {
+    try {
+        raise "Inner error"
+    } catch (inner) {
+        print("Caught inner: " + inner)
+        raise "Outer re-raise from inner: " + inner
+    }
+} catch (outer) {
+    print("Caught outer: " + outer)
+}
+
+// Built-in error catching
+try {
+    var x = 1 / 0
+} catch (zero_err) {
+    print("Caught math error: " + zero_err)
+}

@@ -1,0 +1,25 @@
+// AML SDK - UI and Desktop Helpers
+import_py { 
+    plugins.ui as ui, 
+    plugins.system as system, 
+    plugins.mouse as mouse 
+}
+
+func create_tray_menu(title, items) {
+    // items is a list of [label, callback]
+    var tray_id = ui.create_tray(title)
+    for item in items {
+        ui.add_menu_item(tray_id, item[0], item[1])
+    }
+    ui.show_tray(tray_id)
+    return tray_id
+}
+
+func show_message_box(title, message) {
+    // This could be implemented in plugins/ui.py if needed
+    print("[" + title + "] " + message)
+}
+
+func get_screen_size() {
+    return mouse.get_screen_size()
+}

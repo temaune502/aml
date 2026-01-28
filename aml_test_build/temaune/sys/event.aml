@@ -1,0 +1,20 @@
+// Модуль для роботи з подіями
+// Дозволяє підписуватися на події та викликати їх
+
+import_py "plugins.event_system" as _events
+
+// Підписатися на подію
+// Повертає ID підписки, який можна використати для відписки
+func on(event_name, callback) {
+    return _events.subscribe(event_name, callback)
+}
+
+// Відписатися від події
+func off(event_name, handler_id) {
+    return _events.unsubscribe(event_name, handler_id)
+}
+
+// Викликати подію з даними
+func emit(event_name, data = null) {
+    return _events.emit(event_name, data)
+}

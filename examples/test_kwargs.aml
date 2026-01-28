@@ -1,0 +1,15 @@
+import_py { console }
+
+func greet(name, greeting = "Hello") {
+    console.print_line(greeting + ", " + name + "!")
+}
+
+// Test positional
+greet("Alice")
+greet("Bob", "Hi")
+
+// Test kwargs
+greet(name = "Charlie")
+greet(name = "Dave", greeting = "Good morning")
+greet("Eve", greeting = "Welcome")
+greet(greeting = "Hola", name = "Frank")

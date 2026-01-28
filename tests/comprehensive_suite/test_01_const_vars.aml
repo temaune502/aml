@@ -1,0 +1,31 @@
+const PI = 3.14159
+const APP_NAME = "AML Tester"
+
+print("--- Constant and Variable Test ---")
+print("App:", APP_NAME, "Version:", runtime.language_version)
+
+var x = 10
+print("Initial x:", x)
+x = 20
+print("Modified x:", x)
+
+try {
+    PI = 3.14 // Should fail
+} catch (e) {
+    print("Caught expected error reassigning const PI:", e)
+}
+
+namespace config {
+    const TIMEOUT = 5000
+    var mode = "debug"
+}
+
+print("Namespace constant:", config.TIMEOUT)
+try {
+    config.TIMEOUT = 1000
+} catch (e) {
+    print("Caught expected error reassigning namespace const:", e)
+}
+
+config.mode = "release"
+print("Namespace variable modified:", config.mode)

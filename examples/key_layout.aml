@@ -1,0 +1,9 @@
+import_py {
+    console,
+    base,
+    plugins\pro_automation\system as s
+}
+while (True){
+    base.sleep_ms(10)
+    console.print_line("Поточна розкладка:" + s.get_keyboard_layout())
+}

@@ -1,0 +1,12 @@
+var std = import("temaune/std")
+
+std.print("--- AML Macro Test ---")
+std.print("Waiting 2 seconds...")
+std.base.wait(0.1)
+std.print("Test move...")
+std.move(100, 100)
+std.print("Test completed!")
+var object = {
+    "some" : 1231231231231
+}
+print(object["some"])

@@ -1,0 +1,29 @@
+print("--- Scoping and Namespaces Test ---")
+
+var global_val = "global"
+
+namespace level1 {
+    var l1_val = "level1"
+    
+    namespace level2 {
+        var l2_val = "level2"
+        
+        func show_scope() {
+            print("L2 access:")
+            print("- global_val: " + global_val)
+            print("- l1_val: " + level1.l1_val)
+            print("- l2_val: " + l2_val)
+        }
+    }
+}
+
+level1.level2.show_scope()
+
+// Overriding in local scope
+func test_shadowing() {
+    var global_val = "local override"
+    print("Shadowed global_val: " + global_val)
+}
+
+test_shadowing()
+print("Original global_val: " + global_val)

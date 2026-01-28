@@ -1,0 +1,11 @@
+import_py {
+  console
+}
+
+namespace app {
+  var msg = "Hello, AML!"
+  func main() {
+    console.print_line(msg)
+  }
+}
+app.main()

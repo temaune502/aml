@@ -1,0 +1,32 @@
+print("--- Control Flow Test ---")
+
+print("Loops and if/else:")
+for i in [1, 2, 3, 4, 5] {
+    if (i % 2 == 0) {
+        print(str(i) + " is even")
+    } else {
+        print(str(i) + " is odd")
+    }
+}
+
+print("While loop with break/continue:")
+var count = 0
+while (count < 10) {
+    count = count + 1
+    if (count == 5) {continue}
+    if (count == 8) {break}
+    print("Count: " + str(count))
+}
+
+print("Nested conditions:")
+var age = 20
+var has_ticket = true
+if (age >= 18) {
+    if (has_ticket) {
+        print("Access granted")
+    } else {
+        print("Access denied: no ticket")
+    }
+} else {
+    print("Access denied: too young")
+}

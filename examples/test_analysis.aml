@@ -1,0 +1,13 @@
+
+var x = 10
+var x = 20 // Warning: redeclaration
+
+var s = "hello"
+var res = x * s // Warning: potential type mismatch
+
+func test(a) {
+    var a = 5 // Warning: redeclaration (param)
+    return a
+}
+
+test(1)

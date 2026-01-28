@@ -1,0 +1,196 @@
+// Базовий математичний модуль
+import_py { base, math as pymath }
+
+const PI = 3.141592653589793
+const E = 2.718281828459045
+
+// Повертає абсолютне значення числа
+func abs(x) {
+    if (x < 0) {
+        return -x
+    }
+    return x
+}
+
+// Округляє число до найближчого більшого цілого
+func ceil(x) {
+    return base.ceil(x)
+}
+
+// Округляє число до найближчого меншого цілого
+func floor(x) {
+    return base.floor(x)
+}
+
+// Округляє число до вказаної кількості знаків після коми
+func round(x, digits=0) {
+    return base.round_to(x, digits)
+}
+
+// Підносить число до степеня
+func pow(base_val, exp) {
+    return base_val ** exp
+}
+
+// Повертає квадратний корінь числа
+func sqrt(x) {
+    return x ** 0.5
+}
+
+// Повертає синус кута (в радіанах)
+func sin(x) {
+    return pymath.sin(x)
+}
+
+// Повертає косинус кута (в радіанах)
+func cos(x) {
+    return pymath.cos(x)
+}
+
+// Повертає тангенс кута (в радіанах)
+func tan(x) {
+    return pymath.tan(x)
+}
+
+// Повертає логарифм числа за вказаною основою (за замовчуванням E)
+func log(x, base_val=E) {
+    return pymath.log(x, base_val)
+}
+
+// Обчислює факторіал числа
+func factorial(n) {
+    if (n <= 1) { return 1 }
+    var res = 1
+    var i = 2
+    while (i <= n) {
+        res = res * i
+        i = i + 1
+    }
+    return res
+}
+
+// Повертає мінімальне з двох чисел
+func min(a, b) {
+    if (a < b) {
+        return a
+    }
+    return b
+}
+
+// Повертає максимальне з двох чисел
+func max(a, b) {
+    if (a > b) {
+        return a
+    }
+    return b
+}
+
+// Обчислює суму елементів списку
+func sum(lst) {
+    var total = 0
+    for (item in lst) {
+        total = total + item
+    }
+    return total
+}
+
+// Обчислює середнє арифметичне елементів списку
+func average(lst) {
+    var s = sum(lst)
+    var l = base.lenn(lst)
+    if (l == 0) { return 0 }
+    return s / l
+}
+
+// Перевіряє, чи є число парним
+func is_even(n) {
+    return n % 2 == 0
+}
+
+// Перевіряє, чи є число непарним
+func is_odd(n) {
+    return n % 2 != 0
+}
+
+// Повертає знак числа (-1, 0, 1)
+func sign(x) {
+    if (x > 0) { return 1 }
+    if (x < 0) { return -1 }
+    return 0
+}
+
+// Обмежує число в межах [min_val, max_val]
+func clamp(x, min_val, max_val) {
+    if (x < min_val) { return min_val }
+    if (x > max_val) { return max_val }
+    return x
+}
+
+// Лінійна інтерполяція між a та b
+func lerp(a, b, t) {
+    return a + (b - a) * t
+}
+
+// Перетворює радіани в градуси
+func to_degrees(rad) {
+    return rad * 180 / PI
+}
+
+// Перетворює градуси в радіани
+func to_radians(deg) {
+    return deg * PI / 180
+}
+
+// Обчислює гіпотенузу за двома катетами
+func hypot(a, b) {
+    return sqrt(a*a + b*b)
+}
+
+// Обчислює найбільший спільний дільник (НСД)
+func gcd(a, b) {
+    var x = abs(a)
+    var y = abs(b)
+    while (y != 0) {
+        var temp = y
+        y = x % y
+        x = temp
+    }
+    return x
+}
+
+// Обчислює найменше спільне кратне (НСК)
+func lcm(a, b) {
+    if (a == 0) { return 0 }
+    if (b == 0) { return 0 }
+    return abs(a * b) / gcd(a, b)
+}
+
+// Обчислює медіану списку чисел
+func median(lst) {
+    var l = base.lenn(lst)
+    if (l == 0) { return null }
+    var sorted = base.sort_list(lst)
+    var mid = floor(l / 2)
+    if (l % 2 != 0) {
+        return sorted[mid]
+    }
+    return (sorted[mid - 1] + sorted[mid]) / 2
+}
+
+// Обчислює дисперсію списку чисел
+func variance(lst) {
+    var l = base.lenn(lst)
+    if (l < 2) { return 0 }
+    var avg = average(lst)
+    var sq_diff_sum = 0
+    for (x in lst) {
+        var diff = x - avg
+        sq_diff_sum = sq_diff_sum + (diff * diff)
+    }
+    return sq_diff_sum / l
+}
+
+// Обчислює середньоквадратичне відхилення
+func std_dev(lst) {
+    return sqrt(variance(lst))
+}

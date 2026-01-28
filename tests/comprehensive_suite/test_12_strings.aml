@@ -1,0 +1,23 @@
+print("--- String Operations Test ---")
+
+var s1 = "Hello"
+var s2 = "World"
+var combined = s1 + " " + s2
+print("Concatenation:", combined)
+
+// Testing some python-like string methods if exposed
+print("Upper:", combined.upper())
+print("Lower:", combined.lower())
+print("Replace:", combined.replace("World", "AML"))
+
+// Interpolation simulation
+var name = "Tema"
+var age = 25
+print("User: " + name + ", Age: " + str(age))
+
+// Multi-line strings (if supported by lexer)
+var multi = "Line 1
+Line 2
+Line 3"
+print("Multi-line:")
+print(multi)

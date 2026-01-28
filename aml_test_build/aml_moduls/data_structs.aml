@@ -1,0 +1,17 @@
+import_py {
+    base,
+    console
+}
+func make_user(name, age){
+    var info = { "name": name, "age": age }
+    return info
+}
+func get_age(user){
+    return user["age"]
+}
+func keys_to_list(user){
+    var out = []
+    base.append_to_list(out, "name")
+    base.append_to_list(out, "age")
+    return out
+}

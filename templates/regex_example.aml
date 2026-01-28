@@ -1,0 +1,29 @@
+// Шаблон: Використання регулярних виразів
+
+import_py {
+  console,
+  plugins\regex,
+  base
+}
+
+namespace regex_demo {
+  func main() {
+    var text = "Email: test@example.com та інший: admin@mail.org"
+    var pattern = "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}"
+
+    var first = regex.search(pattern, text)
+    if (first != null) {
+      console.print_line("Перший збіг: " + first["match"] + ", позиція: " + base.to_str(first["span"]))
+    } else {
+      console.print_line("Збігів не знайдено")
+    }
+
+    var all = regex.findall(pattern, text)
+    console.print_line("Усі email-и: " + base.to_str(all))
+
+    var replaced = regex.replace(pattern, "<email>", text)
+    console.print_line("Після заміни: " + replaced)
+  }
+}
+
+regex_demo.main()

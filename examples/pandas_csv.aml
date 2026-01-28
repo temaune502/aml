@@ -1,0 +1,12 @@
+import_py { pandas, pathlib }
+
+meta { entry: "app.main" }
+
+namespace app {
+  func main() {
+    var df = pandas.DataFrame([["Ann", 12], ["Bob", 9]], columns=["name", "score"])
+    var p = pathlib.Path("./tmp_aml")
+    p.mkdir(exist_ok=True)
+    df.to_csv(p.joinpath("scores.csv"), index=False)
+  }
+}

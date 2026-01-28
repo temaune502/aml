@@ -1,0 +1,24 @@
+print("--- Closures and Scoping Test ---")
+
+func make_counter(start) {
+    var count = start
+    func next() {
+        count = count + 1
+        return count
+    }
+    return next
+}
+
+var c1 = make_counter(0)
+var c2 = make_counter(100)
+
+print("Counter 1 (start 0):")
+print(c1())
+print(c1())
+
+print("Counter 2 (start 100):")
+print(c2())
+print(c2())
+
+print("Counter 1 again:")
+print(c1())

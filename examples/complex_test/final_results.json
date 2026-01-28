@@ -1,0 +1,44 @@
+{
+    "stats": {
+        "original": [
+            1,
+            5,
+            8,
+            10,
+            15,
+            20,
+            3
+        ],
+        "evens": [
+            8,
+            10,
+            20
+        ],
+        "squares": [
+            64,
+            100,
+            400
+        ],
+        "sum": 564,
+        "average": 188.0,
+        "max": 564
+    },
+    "text": {
+        "word_count": 7,
+        "lengths": {
+            "AML": 3,
+            "is": 2,
+            "powerful,": 9,
+            "flexible": 8,
+            "and": 3,
+            "fast": 4,
+            "language!": 9
+        },
+        "upper": "AML IS POWERFUL, FLEXIBLE AND FAST LANGUAGE!"
+    },
+    "env": {
+        "user": "temaune",
+        "path_length": 1012
+    },
+    "server_status": "synced"
+}

@@ -1,0 +1,13 @@
+// test_counter.aml
+var total = 0
+func test_loop() {
+    var count = 0
+    while (count < 5) {
+        count = count + 1
+        print("Count is: " + count)
+        total = total + 1
+    }
+}
+
+test_loop()
+print("Total iterations: " + total)

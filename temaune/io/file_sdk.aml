@@ -1,0 +1,49 @@
+// AML SDK - File Operations
+import_py { 
+    plugins.file as file, 
+    plugins.json as json 
+}
+
+func read(path) {
+    return file.read_file(path)
+}
+
+func write(path, content) {
+    file.write_file(path, content)
+}
+
+func append(path, content) {
+    file.append_file(path, content)
+}
+
+func exists(path) {
+    return file.file_exists(path)
+}
+
+func read_json(path) {
+    var content = read(path)
+    return json.parse(content)
+}
+
+func write_json(path, data) {
+    var content = json.stringify(data)
+    write(path, content)
+}
+
+func list(path=".") {
+    return file.list_dir(path)
+}
+
+func ensure_dir(path) {
+    if (file.dir_exists(path) == false) {
+        file.make_dir(path)
+    }
+}
+
+func delete(path) {
+    if (file.is_file(path)) {
+        file.delete_file(path)
+    } else {
+        file.remove_dir(path, recursive=true)
+    }
+}

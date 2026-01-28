@@ -1,0 +1,74 @@
+import_py { 
+    plugins\ui as ui,
+    console
+}
+meta { 
+    entry: "main",
+    author: "Trae AI",
+    description: "Демонстрація Desktop Widget Mode для AML"
+}
+// Функція для вітання
+func on_hello() {
+    console.print_line("[UI] Ви натиснули 'Привіт'!")
+    ui.show_notification("AML Віджет", "Привіт! Я працюю у фоновому режимі.")
+}
+
+// Функція для зміни тексту (приклад взаємодії)
+func on_action() {
+    console.print_line("[UI] Додаткова дія виконана.")
+    ui.show_notification("AML", "Виконано додаткову дію з меню трею.")
+}
+
+// Функція виходу
+func on_exit() {
+    console.print_line("[UI] Завершення роботи віджета...")
+    ui.stop()
+}
+
+func main() {
+    console.print_line("--- Запуск Desktop Widget Mode ---")
+    
+    // 1. Налаштування іконки в системному треї (Tray Icon)
+    var tray = ui.create_tray("AML Control Panel")
+    ui.add_menu_item(tray, "Привітатися", on_hello)
+    ui.add_menu_item(tray, "Додаткова дія", on_action)
+    ui.add_menu_item(tray, "---", on_hello) 
+    ui.add_menu_item(tray, "Вихід", on_exit)
+    ui.show_tray(tray)
+
+    // 2. Створення інтерактивного віджета на робочому столі
+    var widget = ui.create_widget("AML Quick Tools", 280, 250, false, true)
+    ui.set_position(widget, 100, 100)
+    ui.set_style(widget, "QWidget { background-color: #2c3e50; color: white; border-radius: 10px; } QPushButton { background-color: #3498db; border: none; padding: 5px; border-radius: 5px; } QPushButton:hover { background-color: #2980b9; }")
+    
+    ui.add_label(widget, "<h2 style='color: #ecf0f1;'>AML Desktop Widget</h2>")
+    ui.add_label(widget, "Керування автоматизацією:")
+    
+    var input_field = ui.add_input(widget, "Введіть текст...")
+    var check_box = ui.add_checkbox(widget, "Увімкнути логування", true)
+    
+    ui.add_spacer(widget)
+    
+    func on_submit() {
+        var txt = ui.get_input_text(widget, input_field)
+        var log = ui.is_checked(widget, check_box)
+        console.print_line("[UI] Введено: " + txt + " (Логування: " + log + ")")
+        ui.show_notification("AML", "Ви ввели: " + txt)
+    }
+    
+    ui.add_button(widget, "Надіслати", on_submit)
+    ui.add_button(widget, "Надіслати сповіщення", on_hello)
+    ui.add_button(widget, "Виконати скрипт", on_action)
+    ui.add_button(widget, "Закрити все", on_exit)
+    
+    ui.show_widget(widget)
+
+    ui.show_notification("AML", "Віджет запущено! Шукайте іконку в треї.")
+    
+    console.print_line("Подія запущена. Віджет активний.")
+    
+    // Запуск циклу обробки подій GUI
+    ui.run_loop()
+}
+
+

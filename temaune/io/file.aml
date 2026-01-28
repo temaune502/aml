@@ -1,0 +1,105 @@
+// Модуль для роботи з файлами
+import_py { plugins\file as file, base }
+
+// Читає вміст файлу
+func read(path) {
+    return file.read_file(path)
+}
+
+// Записує дані у файл (перезаписує, якщо файл існує)
+func write(path, content) {
+    return file.write_file(path, content)
+}
+
+// Додає дані у кінець файлу
+func append(path, content) {
+    return file.append_file(path, content)
+}
+
+// Перевіряє, чи існує файл або директорія
+func exists(path) {
+    return file.file_exists(path)
+}
+
+// Перевіряє, чи є шлях файлом
+func is_file(path) {
+    return file.is_file(path)
+}
+
+// Перевіряє, чи є шлях директорією
+func is_dir(path) {
+    return file.dir_exists(path)
+}
+
+// Повертає список файлів та папок у директорії
+func list(path=".") {
+    return file.list_dir(path)
+}
+
+// Створює нову директорію
+func mkdir(path) {
+    return file.make_dir(path)
+}
+
+// Видаляє файл або директорію
+func delete(path) {
+    if (is_file(path)) {
+        return file.delete_file(path)
+    }
+    return file.remove_dir(path)
+}
+
+// Об'єднує частини шляху
+func path_join(a, b) {
+    return file.path_join(a, b)
+}
+
+// Повертає розмір файлу в байтах
+func size(path) {
+    return file.file_size(path)
+}
+
+// Копіює файл
+func copy(src, dst) {
+    return file.copy_file(src, dst)
+}
+
+// Переміщує або перейменовує файл
+func move(src, dst) {
+    return file.move_file(src, dst)
+}
+
+// Повертає поточну робочу директорію
+func cwd() {
+    return file.get_cwd()
+}
+
+// Змінює поточну робочу директорію
+func chdir(path) {
+    return file.change_dir(path)
+}
+
+// Об’єднує частини шляху
+func join(a, b) {
+    return file.path_join(a, b)
+}
+
+// Повертає базове ім'я файлу
+func basename(path) {
+    return file.get_basename(path)
+}
+
+// Повертає ім'я директорії файлу
+func dirname(path) {
+    return file.get_dirname(path)
+}
+
+// Повертає розширення файлу
+func extname(path) {
+    return file.get_extname(path)
+}
+
+// Повертає абсолютний шлях
+func abspath(path) {
+    return file.get_abspath(path)
+}

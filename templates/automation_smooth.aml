@@ -1,0 +1,61 @@
+// Демонстрація модуля plugins\automation: плавний рух курсора, гарячі клавіші, друк тексту, прокрутка.
+
+import_py {
+  console,
+  plugins\automation_old as automation,
+  base
+}
+
+namespace demo_auto {
+  // Налаштування
+  var move_duration = 1.0
+  var move_steps = 30
+
+  func abs_move_example() {
+    var size = automation.get_screen_size()
+    console.print_line("Розмір екрана: " + size)
+
+    // Переміщення у центр екрана з плавністю
+    var cx = size[0] / 2
+    var cy = size[1] / 2
+    console.print_line("Рух до центру: (" + cx + ", " + cy + ")")
+    automation.move_mouse_smooth(cx, cy, move_duration, move_steps)
+  }
+
+  func rel_move_example() {
+    console.print_line("Рух відносно поточної позиції: (+100, -50)")
+    automation.move_mouse_relative_smooth(100, -50, move_duration, move_steps)
+  }
+
+  func hotkey_example() {
+    console.print_line("Натискаю гарячу комбінацію: Ctrl+Shift+Esc")
+    automation.hotkey("ctrl", "shift", "esc")
+  }
+
+  func type_example() {
+    console.print_line("Друк тексту з інтервалом")
+    automation.type_text("Hello AML Automation!", 0.02)
+  }
+
+  func scroll_example() {
+    console.print_line("Прокрутка вниз на 500 кліків")
+    automation.scroll(-500, "vertical")
+    console.print_line("Прокрутка вправо на 50 кліків")
+    automation.scroll(50, "horizontal")
+  }
+
+  func main() {
+    abs_move_example()
+    base.wait(0.5)
+    rel_move_example()
+    base.wait(0.5)
+    hotkey_example()
+    base.wait(0.5)
+    type_example()
+    base.wait(0.5)
+    scroll_example()
+    console.print_colored("Готово.", "green")
+  }
+}
+
+demo_auto.main()

@@ -1,0 +1,11 @@
+var test = 1
+
+var x = @test
+import_py{base}
+func test1(){
+    print(spec.tick)
+}
+tick(@test1)
+while (True) {
+    base.wait(0.1)
+}

@@ -1,0 +1,7 @@
+// lib_math.aml
+namespace math {
+    const E = 2.71828
+    
+    func square(x) { return x * x }
+    func cube(x) { return x * x * x }
+}

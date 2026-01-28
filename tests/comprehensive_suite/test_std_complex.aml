@@ -1,0 +1,62 @@
+// Комплексний тест стандартної бібліотеки temaune
+var std = import("temaune/std")
+
+func main() {
+    std.io.info("=== Тестування temaune/std ===")
+
+    // Math
+    var p = std.math.pow(2, 3)
+    std.io.print("2^3 = " + p)
+    std.io.print("PI = " + std.math.PI)
+
+    // Collections (HOF)
+    var numbers = [1, 2, 3, 4, 5, 6]
+    
+    // Map: double numbers
+    func double(x) { return x * 2 }
+    var doubled = std.list.map(numbers, double)
+    std.io.print("Doubled: " + doubled)
+
+    // Filter: even numbers
+    func is_even(x) { return x % 2 == 0 }
+    var evens = std.list.filter(numbers, is_even)
+    std.io.print("Evens: " + evens)
+
+    // Reduce: sum
+    func sum_cb(a, b) { return a + b }
+    var total = std.list.reduce(numbers, sum_cb, 0)
+    std.io.print("Sum via reduce: " + total)
+
+    // String repeat
+    var star = std.str.repeat("*", 10)
+    std.io.print("Stars: " + star)
+
+    // Sys
+    std.io.print("OS: " + std.sys.os_name())
+
+    // NEW EXTENSIONS TEST
+    std.io.info("--- Тестування нових розширень ---")
+    
+    // Math extensions
+    std.io.print("Factorial(5): " + std.math.factorial(5))
+    std.io.print("Sin(PI/2): " + std.math.sin(std.math.PI / 2))
+    
+    // String extensions
+    std.io.print("Reverse 'AML': " + std.str.reverse("AML"))
+    std.io.print("Index of 'World' in 'Hello World': " + std.str.index_of("Hello World", "World"))
+    
+    // List extensions
+    var nested = [1, [2, 3], [4, [5, 6]]]
+    std.io.print("Deep Flatten: " + std.list.deep_flatten(nested))
+    std.io.print("Shallow Flatten: " + std.list.shallow_flatten(nested))
+    var dups = [1, 2, 2, 3, 1, 4]
+    std.io.print("Unique: " + std.list.unique(dups))
+    var keys = ["a", "b"]
+    var vals = [1, 2]
+    std.io.print("Zip: " + std.list.zip(keys, vals))
+
+    std.io.success("=== Тест завершено успішно! ===")
+
+}
+
+main()

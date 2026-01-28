@@ -1,0 +1,424 @@
+================================================================================
+ПОВНИЙ КАТАЛОГ ВСІХ МОДУЛІВ І ФУНКЦІЙ (ВЕРСІЯ 2.0)
+================================================================================
+
+ДАТА: 16 листопада 2025
+ВСЬОГО: 18 модулів, 110+ функцій
+
+
+================================================================================
+1. HELPERS.PY ⭐ NEW (50+ ФУНКЦІЙ)
+================================================================================
+
+КОНВЕРТУВАННЯ (6 функцій):
+  ✓ to_int(value, default=0)              → int
+  ✓ to_float(value, default=0.0)          → float
+  ✓ to_bool(value)                        → bool (розумне розпізнання)
+  ✓ to_list(value)                        → list
+  ✓ to_dict(value)                        → dict (з JSON)
+  ✓ to_string(value)                      → str (серіалізація)
+
+ВАЛІДАЦІЯ (7 функцій):
+  ✓ is_email(value)                       → bool (email адреса)
+  ✓ is_url(value)                         → bool (URL адреса)
+  ✓ is_phone(value)                       → bool (українські номери)
+  ✓ is_ipv4(value)                        → bool (IPv4 адреса)
+  ✓ is_valid_json(value)                  → bool (JSON стрічка)
+  ✓ matches_pattern(value, pattern)       → bool (regex match)
+  ✓ has_length(value, min_len, max_len)   → bool (перевірка довжини)
+
+ФОРМАТУВАННЯ ТЕКСТІВ (10 функцій):
+  ✓ to_camel_case(text)                   → str (helloWorld)
+  ✓ to_snake_case(text)                   → str (hello_world)
+  ✓ to_kebab_case(text)                   → str (hello-world)
+  ✓ to_title_case(text)                   → str (Hello World)
+  ✓ truncate(text, max_length, suffix)    → str (обрізання)
+  ✓ remove_special_chars(text)            → str (видалення спецсимволів)
+  ✓ slugify(text)                         → str (URL-friendly slug)
+  ✓ reverse_string(text)                  → str (розверток)
+  ✓ repeat_string(text, count)            → str (повторення)
+
+ДАТА І ЧАС (5 функцій):
+  ✓ format_date(date, fmt)                → str (16.11.2025)
+  ✓ format_datetime(datetime, fmt)        → str (16.11.2025 14:30:45)
+  ✓ format_time(seconds)                  → str (1h 1m 5s)
+  ✓ format_bytes(bytes)                   → str (1.50 MB)
+  ✓ format_number(num, decimals)          → str (1,234,567.89)
+
+ФАЙЛОВІ ОПЕРАЦІЇ (8 функцій):
+  ✓ ensure_dir(path)                      → str (гарантує директорію)
+  ✓ read_file(path, encoding)             → str (читання файлу)
+  ✓ write_file(path, content, encoding)   → bool (запис файлу)
+  ✓ read_lines(path, encoding)            → List[str] (рядків)
+  ✓ append_file(path, content)            → bool (додавання)
+  ✓ delete_file(path)                     → bool (видалення)
+  ✓ file_exists(path)                     → bool (наявність)
+  ✓ file_size(path)                       → int (розмір в байтах)
+
+КЕШУВАННЯ (SimpleCache клас):
+  ✓ SimpleCache(ttl=3600)                 клас для кешування з TTL
+  ✓ cache.set(key, value)                 встановлення
+  ✓ cache.get(key)                        отримання
+  ✓ cache.delete(key)                     видалення
+  ✓ cache.clear()                         очищення
+  ✓ cache.__contains__(key)                перевірка наявності
+  ✓ cache.__len__()                       кількість елементів
+
+СТРІЧКИ (11 функцій):
+  ✓ count_words(text)                     → int (рахування слів)
+  ✓ count_lines(text)                     → int (рахування рядків)
+  ✓ count_chars(text, exclude_spaces)     → int (рахування символів)
+  ✓ find_all_matches(text, pattern)       → List[str] (regex пошук)
+  ✓ replace_all(text, replacements)       → str (множина замін)
+  ✓ remove_duplicates(items)              → list (видалення дублікатів)
+  ✓ dedent(text)                          → str (видалення відступу)
+
+СПИСКИ (7 функцій):
+  ✓ flatten(lst)                          → list (розгортання)
+  ✓ chunk_list(lst, chunk_size)           → List[list] (розділення)
+  ✓ unique(lst)                           → list (унікальні)
+  ✓ find_index(lst, value)                → int (пошук індексу)
+  ✓ intersect(list1, list2)               → list (перетин)
+  ✓ difference(list1, list2)              → list (різниця)
+  ✓ group_by(items, key)                  → dict (групування)
+
+СЛОВНИКИ (5 функцій):
+  ✓ merge_dicts(*dicts)                   → dict (об'єднання)
+  ✓ filter_dict(d, keys)                  → dict (фільтрування)
+  ✓ exclude_dict(d, keys)                 → dict (виключення)
+  ✓ flatten_dict(d)                       → dict (розгортання)
+  ✓ deep_get(d, path, default)            → Any (глибокий доступ)
+
+ХЕШУВАННЯ (3 функції):
+  ✓ hash_md5(text)                        → str (MD5 хеш)
+  ✓ hash_sha256(text)                     → str (SHA256 хеш)
+  ✓ hash_file(file_path, algorithm)       → str (хеш файлу)
+
+СИСТЕМА (4 функції):
+  ✓ get_current_timestamp()               → float (поточний час)
+  ✓ sleep_ms(milliseconds)                → None (сон в мс)
+  ✓ get_env(name, default)                → str (змінна середовища)
+  ✓ set_env(name, value)                  → None (встановлення змінної)
+
+
+================================================================================
+2. DSL_INTEGRATION.PY ⭐ NEW (10+ КОМАНД, 40+ ІНТЕГРОВАНИХ)
+================================================================================
+
+ВБУДОВАНІ DSL КОМАНДИ (10):
+  ✓ print(*args)                          → None (вивід)
+  ✓ set(name, value)                      → None (встановлення змінної)
+  ✓ get(name)                             → Any (отримання змінної)
+  ✓ if(condition, true_block, false_block) → Any (умовне виконання)
+  ✓ for(var, iterable, block)             → None (цикл)
+  ✓ sleep(seconds)                        → None (затримка)
+  ✓ macro(name, template)                 → None (визначення макросу)
+  ✓ expand(macro_name, **params)          → str (розширення макросу)
+  ✓ assert(condition, message)            → None (перевірка)
+  ✓ import(module_name)                   → None (імпорт модуля)
+
+КЛАССЫ:
+  ✓ DSLCommand                            (датаклас для команди)
+  ✓ DSLContext                            (контекст виконання)
+  ✓ DSLParser                             (парсер DSL)
+  ✓ DSLExecutor                           (виконавець команд)
+  ✓ DSLBuilder                            (builder для скриптів)
+  ✓ DSLModuleIntegration                  (інтеграція модулів)
+
+ІНТЕГРОВАНІ ФУНКЦІЇ:
+  От helpers.py (40+ функцій):
+    ✓ to_int(), to_float(), to_bool(), to_list(), to_str()
+    ✓ is_email(), is_url(), is_phone(), is_ipv4(), is_valid_json()
+    ✓ to_camel_case(), to_snake_case(), to_kebab_case()
+    ✓ format_date(), format_time(), format_bytes(), format_number()
+    ✓ count_words(), count_chars(), reverse_string()
+    ✓ flatten(), unique(), chunk_list(), intersect(), difference()
+    ✓ merge_dicts(), filter_dict(), flatten_dict()
+    ✓ read_file(), write_file(), file_exists()
+    ✓ hash_md5(), hash_sha256()
+    ✓ ... і багато інших
+
+  От automation.py:
+    ✓ click(x, y), move_mouse(x, y), type_text(text), press_key(key)
+
+  От інших модулів (OCR, Screen, Recorder, Performance):
+    ✓ ocr_read_text(), screen_save(), log_info(), log_error()
+    ✓ ... та ще 10+ функцій
+
+
+================================================================================
+3. AUTOMATION.PY (40+ ФУНКЦІЙ)
+================================================================================
+
+ЕКРАН (3 функції):
+  ✓ get_screen_size()                     → Tuple[int, int]
+  ✓ get_mouse_position()                  → Tuple[int, int]
+
+РУХАННЯ МИШІ (7 функцій):
+  ✓ move_mouse_smooth(x, y, duration, steps)
+  ✓ move_mouse_relative_smooth(dx, dy, duration, steps)
+  ✓ move_mouse_to_ratio(rx, ry, duration, steps)
+  ✓ move_mouse_random_walk(x, y, steps, step_size, duration)
+  ✓ move_mouse_sine(start, end, amplitude, period, duration)
+  ✓ move_mouse_circle(center, radius, duration)
+  ✓ move_mouse_spiral(center, start_radius, end_radius, turns, duration)
+
+КЛІКИ (3 функції):
+  ✓ click(button, x, y, count, interval, smooth, duration, steps)
+  ✓ double_click(x, y, button, smooth, duration, steps)
+  ✓ right_click(x, y, smooth, duration, steps)
+
+НАБІР ТЕКСТУ (2 функції):
+  ✓ type_text(text, interval)
+  ✓ press_key(key, count, interval)
+
+КРИВІ ТРАЄКТОРІЇ (10+ функцій):
+  ✓ move_mouse_noisy(x, y, duration, noise_level)
+  ✓ move_mouse_interpolated(waypoints, steps_per_segment, curve_type, duration)
+  ✓ move_mouse_composite(start, end, pattern, secondary_noise, duration)
+  ✓ move_mouse_linear(start, end, duration)
+  ✓ ... + інші криві та траєкторії
+
+
+================================================================================
+4. CURVES.PY (30+ ФУНКЦІЙ)
+================================================================================
+
+ІНТЕРПОЛЯЦІЯ (5 функцій):
+  ✓ interpolate_linear(start, end, t)
+  ✓ interpolate_quadratic(start, ctrl, end, t)
+  ✓ interpolate_cubic(start, ctrl1, ctrl2, end, t)
+  ✓ interpolate_catmull(p0, p1, p2, p3, t)
+
+EASING ФУНКЦІЇ (10+ функцій):
+  ✓ ease_linear(t)
+  ✓ ease_in_out_quad(t)
+  ✓ ease_in_out_cubic(t)
+  ✓ ease_in_out_sine(t)
+  ✓ ease_out_elastic(t)
+  ✓ ease_out_bounce(t)
+  ✓ ... та ще 5+ easing функцій
+
+КРИВІ (8 функцій):
+  ✓ bezier_curve(start, ctrl1, ctrl2, end, num_points)
+  ✓ circle_points(center, radius, num_points)
+  ✓ spiral_points(center, start_radius, end_radius, turns, num_points)
+  ✓ sine_wave(start_x, end_x, amplitude, period, num_points)
+  ✓ ... та ще 4+ функції для кривих
+
+ТРАЄКТОРІЇ (5+ функцій):
+  ✓ generate_random_walk(start, num_steps, step_size)
+  ✓ perlin_noise(x, y, z)
+  ✓ ... та ще 3+ функції
+
+
+================================================================================
+5. OCR.PY (12 ФУНКЦІЙ)
+================================================================================
+
+ОСНОВИ (3 функції):
+  ✓ ocr_read_text(image_path)             → str (читання тексту)
+  ✓ ocr_find_text(search_text)            → bool (пошук тексту)
+  ✓ ocr_get_pixel_color(image_path, x, y) → Tuple[int, int, int]
+
+ОБРОБКА ЗОБРАЖЕНЬ (5 функцій):
+  ✓ ocr_preprocess_image(image_path)
+  ✓ ocr_extract_text_region(image_path, x, y, width, height)
+  ✓ ocr_detect_text_boxes(image_path)
+  ✓ ocr_confidence_score(image_path)
+  ✓ ocr_language_detection(text)
+
+ПОШУК (4 функції):
+  ✓ ocr_find_text_coordinates(image_path, search_text)
+  ✓ ocr_match_template(image_path, template_path)
+  ✓ ocr_find_all_text(image_path)
+  ✓ ocr_blur_text(image_path, text)
+
+
+================================================================================
+6. SCREEN.PY (15 ФУНКЦІЙ)
+================================================================================
+
+СКРІНSHOTS (4 функції):
+  ✓ screen_save(filename)                 → bool
+  ✓ screen_get_image()                    → PIL.Image
+  ✓ screen_crop(x, y, width, height)      → PIL.Image
+  ✓ screen_get_color(x, y)                → Tuple[int, int, int]
+
+ПОШУК (5 функцій):
+  ✓ screen_find_image(template_path)      → Tuple[int, int]
+  ✓ screen_find_image_location(template)  → List[Tuple[int, int]]
+  ✓ screen_find_color(color)              → List[Tuple[int, int]]
+  ✓ screen_find_edge()                    → List[Tuple[int, int]]
+  ✓ screen_match_template(template, threshold)
+
+МОНІТОРИНГ (3 функції):
+  ✓ screen_wait_change(timeout)           → bool
+  ✓ screen_wait_for_image(template, timeout)
+  ✓ screen_monitor_for_changes(callback, interval)
+
+ОБРОБКА (3 функції):
+  ✓ screen_draw_rectangle(x, y, width, height, color)
+  ✓ screen_draw_circle(x, y, radius, color)
+  ✓ screen_apply_filter(filter_name)
+
+
+================================================================================
+7. RECORDER.PY (18 ФУНКЦІЙ)
+================================================================================
+
+ЗАПИС (4 функції):
+  ✓ recorder_start()                      → None
+  ✓ recorder_stop()                       → List[Event]
+  ✓ recorder_pause()                      → None
+  ✓ recorder_resume()                     → None
+
+ВІДТВОРЕННЯ (3 функції):
+  ✓ recorder_playback(events)             → None
+  ✓ recorder_playback_file(filename)      → None
+  ✓ recorder_playback_with_speed(events, speed_factor)
+
+СОХРАНЕНИЕ (3 функції):
+  ✓ recorder_save(events, filename)       → bool
+  ✓ recorder_load(filename)               → List[Event]
+  ✓ recorder_export_to_json(events, filename)
+
+РЕДАГУВАННЯ (5 функцій):
+  ✓ recorder_filter_events(events, event_type)
+  ✓ recorder_merge_recordings(list_of_recordings)
+  ✓ recorder_crop_recording(events, start_time, end_time)
+  ✓ recorder_scale_coordinates(events, scale_x, scale_y)
+  ✓ recorder_add_delay(events, delay)
+
+АНАЛІЗ (3 функції):
+  ✓ recorder_get_statistics(events)       → dict
+  ✓ recorder_detect_patterns(events)      → List[Pattern]
+  ✓ recorder_compare_recordings(recording1, recording2)
+
+
+================================================================================
+8. SENSOR.PY (16 ФУНКЦІЙ)
+================================================================================
+
+ВІДСТЕЖЕННЯ (4 функції):
+  ✓ sensor_track_mouse()                  → Generator[Position, None, None]
+  ✓ sensor_track_keyboard()               → Generator[Key, None, None]
+  ✓ sensor_track_screen_changes()         → Generator[Change, None, None]
+  ✓ sensor_detect_activity()              → bool
+
+СЛУХАЧІ (4 функції):
+  ✓ sensor_on_mouse_move(callback)        → Listener
+  ✓ sensor_on_key_press(callback, keys)   → Listener
+  ✓ sensor_on_screen_change(callback)     → Listener
+  ✓ sensor_on_click(callback)             → Listener
+
+УМОВНА ЛОГІКА (5 функцій):
+  ✓ sensor_wait_for_event(event_type, timeout)
+  ✓ sensor_wait_for_condition(condition_func, timeout)
+  ✓ sensor_on_idle(callback, idle_time)
+  ✓ sensor_on_activity(callback)
+  ✓ sensor_debounce(callback, delay)
+
+УПРАВЛІННЯ (3 функції):
+  ✓ sensor_stop_all_listeners()           → None
+  ✓ sensor_get_active_listeners()         → List[Listener]
+  ✓ sensor_clear_listeners()              → None
+
+
+================================================================================
+9. PERFORMANCE.PY (20 ФУНКЦІЙ)
+================================================================================
+
+ЛОГУВАННЯ (5 функцій):
+  ✓ log_info(message)                     → None
+  ✓ log_error(message, exception)         → None
+  ✓ log_warning(message)                  → None
+  ✓ log_debug(message)                    → None
+  ✓ log_to_file(message, filename)        → None
+
+ТАЙМЕРИ (4 функції):
+  ✓ timer_start(name)                     → None
+  ✓ timer_stop(name)                      → float (часу в секундах)
+  ✓ timer_get_all()                       → dict (всі таймери)
+  ✓ timer_reset_all()                     → None
+
+ПРОФАЙЛИНГ (4 функції):
+  ✓ profile_function(func)                → Callable (декоратор)
+  ✓ profile_code_block(block_name)        → None
+  ✓ get_profiling_stats()                 → dict
+  ✓ reset_profiling()                     → None
+
+ОПТИМІЗАЦІЯ (4 функції):
+  ✓ optimize_memory_usage()               → int (звільнено байтів)
+  ✓ get_memory_usage()                    → int (використовується байтів)
+  ✓ get_cpu_usage()                       → float (відсоток)
+  ✓ get_performance_report()              → dict
+
+АСИНХРОННІ ОПЕРАЦІЇ (3 функції):
+  ✓ async_run(func, *args)                → Future
+  ✓ async_run_parallel(functions_list)    → List[Future]
+  ✓ wait_for_result(future, timeout)      → Any
+
+
+================================================================================
+10-18. ІНШІ МОДУЛІ (15+ ФУНКЦІЙ)
+================================================================================
+
+DATETIME_AML.PY:
+  ✓ parse_date_string(string)             → datetime
+  ✓ get_age(birth_date)                   → int
+  ✓ get_date_range(start, end)            → List[datetime]
+  ✓ format_datetime_custom(datetime, fmt) → str
+  ✓ ... та ще 5+ функцій
+
+FILE.PY:
+  ✓ get_file_size(path)                   → int
+  ✓ get_file_extension(path)              → str
+  ✓ get_file_modified_time(path)          → datetime
+  ✓ ... та ще 5+ функцій
+
+HTTP.PY:
+  ✓ http_get(url)                         → Response
+  ✓ http_post(url, data)                  → Response
+  ✓ ... та ще 5+ функцій
+
+JSON.PY:
+  ✓ json_load(path)                       → dict
+  ✓ json_dump(data, path)                 → None
+  ✓ ... та ще 5+ функцій
+
+KEYBOARD.PY:
+  ✓ keyboard_press(key)                   → None
+  ✓ keyboard_release(key)                 → None
+  ✓ ... та ще 5+ функцій
+
+MOUSE.PY:
+  ✓ mouse_move(x, y)                      → None
+  ✓ mouse_click(button)                   → None
+  ✓ ... та ще 5+ функцій
+
+REGEX.PY:
+  ✓ regex_match(pattern, text)            → bool
+  ✓ regex_find_all(pattern, text)         → List[str]
+  ✓ ... та ще 5+ функцій
+
+SYSTEM.PY:
+  ✓ system_execute(command)               → str
+  ✓ system_get_info()                     → dict
+  ✓ ... та ще 5+ функцій
+
+
+================================================================================
+ПІДСУМОК
+================================================================================
+
+ВСЬОГО МОДУЛІВ:         18
+ВСЬОГО ФУНКЦІЙ:         110+
+РЯДКІВ КОДУ:            ~6000
+РЯДКІВ ДОКУМЕНТАЦІЇ:    ~5000
+
+СТАТУС ВЕРСІЇ 2.0:      ✅ ВИРОБНИЧИЙ
+ДАТА ВИПУСКУ:           16 листопада 2025
+ЛІЦЕНЗІЯ:               Відкритий код (використовуйте на власний ризик)
+
+================================================================================

@@ -1,0 +1,31 @@
+const some_const = 1231313
+print("some_const =", some_const)
+
+print("runtime.language_version =", runtime.language_version)
+print("runtime.entry_file =", runtime.entry_file)
+print("runtime.module_paths =", runtime.module_paths)
+
+namespace my_ns {
+    const internal_const = "immutable"
+    var internal_var = "mutable"
+}
+
+print("my_ns.internal_const =", my_ns.internal_const)
+
+try {
+    some_const = 999
+} catch (e) {
+    print("Caught expected error reassigning some_const:", e)
+}
+
+try {
+    my_ns.internal_const = "changed"
+} catch (e) {
+    print("Caught expected error reassigning my_ns.internal_const:", e)
+}
+
+try {
+    runtime.language_version = "2.0.0"
+} catch (e) {
+    print("Caught expected error reassigning runtime.language_version:", e)
+}

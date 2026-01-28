@@ -1,0 +1,72 @@
+// Тестовий сценарій AML для перевірки нових функцій pro_automation
+import_py {
+    console,
+    base,
+    plugins\pro_automation
+}
+
+func test_mouse_features() {
+    console.print_line("=== Тестування миші ===")
+    
+    // 1. Отримання розміру екрана
+    var screen = pro_automation.get_screen_size()
+    console.print_line("Розмір екрана: " + base.to_str(screen))
+    
+    // 2. Плавне переміщення в центр екрана (через Ratio)
+    console.print_line("Переміщення в центр (ratio 0.5, 0.5)...")
+    pro_automation.move_mouse_to_ratio(0.5, 0.5, duration=1.0, steps=30)
+    base.sleep_ms(500)
+    
+    // 3. Плавне переміщення по кривій Без'є
+    console.print_line("Рух по кривій Без'є до (200, 200)...")
+    pro_automation.move_mouse_bezier_to(200, 200, duration=1.5, steps=50, jitter=5)
+    base.sleep_ms(500)
+    
+    // 4. Відносне плавне переміщення
+    console.print_line("Зсув миші на +100, +100 відносно поточної позиції...")
+    pro_automation.move_mouse_relative_smooth(100, 100, duration=0.8, steps=20)
+    
+    // 5. Перевірка обмеження координатами екрана (clamp)
+    var clamped = pro_automation.clamp_to_screen(9999, 9999)
+    console.print_line("Clamp(9999, 9999) -> " + base.to_str(clamped))
+    
+    // 6. Подвійний клік з плавним підходом
+    console.print_line("Плавний підхід до (400, 400) та подвійний клік...")
+    pro_automation.double_click(x=400, y=400, smooth=True, duration=0.5)
+    
+    // 7. Плавна прокрутка
+    console.print_line("Плавна прокрутка вгору...")
+    pro_automation.scroll_smooth(clicks=5, duration=1.0, steps=10)
+}
+
+func test_keyboard_features() {
+    console.print_line("=== Тестування клавіатури ===")
+    
+    // 1. Імітація людського введення
+    console.print_line("Друкую текст 'Hello from AML!' як людина...")
+    pro_automation.type_text_human("Hello from AML!", min_interval=0.05, max_interval=0.15)
+    
+    // 2. Очікування натискання клавіші
+    console.print_line("Будь ласка, натисніть будь-яку клавішу (таймаут 5 сек)...")
+    var key = pro_automation.wait_for_key(timeout=5.0)
+    if (key == null) {
+        console.print_line("Таймаут очікування клавіші.")
+    } else {
+        console.print_line("Натиснуто клавішу: " + base.to_str(key))
+    }
+}
+
+func main() {
+    console.print_line("--- Початок тестування pro_automation ---")
+    
+    try {
+        test_mouse_features()
+        base.sleep_ms(1000)
+        test_keyboard_features()
+        console.print_line("--- Тестування завершено успішно ---")
+    } catch {
+        console.print_line("Помилка під час тесту: " + error)
+    }
+}
+
+main()

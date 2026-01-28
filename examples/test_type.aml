@@ -1,0 +1,27 @@
+print("--- Testing type() builtin ---")
+
+var x = 10
+print("Type of 10:", type(x))
+
+var y = "hello"
+print("Type of 'hello':", type(y))
+
+var z = [1, 2, 3]
+print("Type of list:", type(z))
+
+var w = {"a": 1}
+print("Type of dict:", type(w))
+
+var b = true
+print("Type of true:", type(b))
+
+func f() {}
+print("Type of function:", type(f))
+
+print("--- Testing bool() builtin ---")
+print("bool(1):", bool(1))
+print("bool(0):", bool(0))
+print("bool(''):", bool(""))
+print("type(10) == int:", type(10) == int)
+print("type('s') == str:", type('s') == str)
+print("type(true) == bool:", type(true) == bool)

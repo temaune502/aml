@@ -1,0 +1,10 @@
+import_py {
+    console,
+    base
+}
+try {
+    var bad = base.divide(10, 0)
+    console.print_line("Це не має бути виведено")
+} catch {
+    console.print_line("Перехоплено помилку"+ error)
+}

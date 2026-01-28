@@ -1,0 +1,22 @@
+// Шаблон: Неймспейси та імпорти
+
+import_py {
+  console
+}
+
+// Приклад організації коду у неймспейсах
+namespace utils {
+  func greet(name) {
+    return "Вітаю, " + name + "!"
+  }
+}
+
+namespace app {
+  func main() {
+    var msg = utils.greet("AML")
+    console.print_line(msg)
+  }
+}
+
+// Точка входу
+app.main()

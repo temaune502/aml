@@ -1,0 +1,30 @@
+import_aml { tests\complex_suite\logger }
+
+namespace Net {
+    var connected = False
+    
+    func connect(url) {
+        Log.info("Connecting to " + url)
+        connected = True
+        return True
+    }
+    
+    func disconnect() {
+        Log.info("Disconnecting...")
+        connected = False
+    }
+    
+    func request(endpoint, payload) {
+        if (connected == False) {
+            Log.error("Not connected! Cannot request " + endpoint)
+            return null
+        }
+        Log.debug("Requesting " + endpoint + " with " + payload)
+        
+        // Mock response
+        return {
+            "status": 200,
+            "body": "Mock response for " + endpoint
+        }
+    }
+}

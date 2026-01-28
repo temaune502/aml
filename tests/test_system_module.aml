@@ -1,0 +1,40 @@
+import_py {
+    plugins.system,
+    console
+}
+
+func main() {
+    console.print_colored("--- System Module Test (CMD & PowerShell) ---", "cyan")
+    
+    // Тест CMD
+    console.print_line("Running 'dir' via CMD...")
+    var res_cmd = system.run_cmd("dir")
+    console.print_line("CMD Exit Code: ", res_cmd["code"])
+    // console.print_line("Output: ", res_cmd["output"])
+    
+    // Тест PowerShell
+    console.print_line("\nRunning 'Get-Date' via PowerShell...")
+    var res_ps = system.run_ps("Get-Date")
+    console.print_line("PS Exit Code: ", res_ps["code"])
+    console.print_line("PS Output: ", res_ps["output"])
+    
+    console.print_colored("\n--- Environment Variables Test ---", "yellow")
+    
+    var path = system.env_get("PATH")
+    console.print_line("PATH starts with: ", path)
+    
+    console.print_line("Setting TEST_VAR=HelloAML")
+    system.env_set("TEST_VAR", "HelloAML")
+    console.print_line("TEST_VAR value: ", system.env_get("TEST_VAR"))
+    
+    console.print_line("Deleting TEST_VAR...")
+    system.env_delete("TEST_VAR")
+    console.print_line("TEST_VAR after delete: ", system.env_get("TEST_VAR"))
+    
+    console.print_colored("\n--- Working Directory Test ---", "green")
+    console.print_line("Current CWD: ", system.get_cwd())
+    
+    console.print_colored("\nTest completed!", "magenta")
+}
+
+main()

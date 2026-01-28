@@ -1,0 +1,59 @@
+// AML SDK - General Utilities
+import_py { 
+    base,
+    plugins.convert as convert, 
+    plugins.datetime as datetime, 
+    plugins.system as system 
+}
+
+func to_int(val) {
+    return convert.to_int(val)
+}
+
+func to_str(val) {
+    return convert.to_str(val)
+}
+
+func now() {
+    return datetime.format_now()
+}
+
+func timestamp() {
+    return datetime.timestamp()
+}
+
+func retry(fn, max_attempts=3, delay=1) {
+    var attempt = 1
+    while (attempt <= max_attempts) {
+        try {
+            return fn()
+        } catch(e) {
+            print("Attempt " + to_str(attempt) + " failed: " + e)
+            if (attempt == max_attempts) {
+                print("Max retry attempts reached: " + e)
+                exit_now()
+            }
+            system.sleep(delay)
+            attempt += 1
+        }
+    }
+}
+
+func random_range(min, max) {
+    return base.random_float(min, max)
+}
+
+func random_int(min, max) {
+    return base.random_int(min, max)
+}
+
+func random_choice(lst) {
+    return base.random_choice(lst)
+}
+
+func measure_time(fn) {
+    var start = timestamp()
+    fn()
+    var end = timestamp()
+    return end - start
+}

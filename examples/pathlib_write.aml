@@ -1,0 +1,12 @@
+import_py { pathlib, console as b}
+
+meta { entry: "app.main" }
+
+namespace app {
+  func main() {
+    var p = pathlib.Path("./tmp_aml")
+    p.mkdir(exist_ok=True)
+    p.joinpath("example.txt").write_text("Привіт із AML + Python", encoding="utf-8")
+    b.print_line('ewe')
+  }
+}

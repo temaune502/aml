@@ -1,0 +1,30 @@
+var std = import("temaune/std")
+var math = import("temaune/math/core")
+var dd = [[12,32],[142,1242]]
+print(dd)
+func test() {
+    std.print("--- Тестування нових функцій math/core ---")
+    
+    // Алгебра
+    std.print("Sign of -5: " + math.sign(-5))
+    std.print("Clamp 15 in [0, 10]: " + math.clamp(15, 0, 10))
+    std.print("GCD(48, 18): " + math.gcd(48, 18))
+    std.print("LCM(12, 15): " + math.lcm(12, 15))
+    
+    // Геометрія
+    std.print("Hypot(3, 4): " + math.hypot(3, 4))
+    std.print("Deg to Rad (180): " + math.to_radians(180))
+    std.print("Rad to Deg (PI): " + math.to_degrees(math.PI))
+    
+    // Статистика
+    var data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    std.print("Data: " + data)
+    std.print("Median: " + math.median(data))
+    std.print("Variance: " + math.variance(data))
+    std.print("Std Dev: " + math.std_dev(data))
+    
+    // Інтерполяція
+    std.print("Lerp(10, 20, 0.5): " + math.lerp(10, 20, 0.5))
+}
+
+test()

@@ -1,0 +1,24 @@
+print("--- Complex Data Structures Test ---")
+
+var table = [
+    {"id": 1, "data": [10, 20]},
+    {"id": 2, "data": [30, 40]}
+]
+
+print("Nested access:")
+print("Row 1 ID:", table[0]["id"])
+print("Row 2 Data 1:", table[1]["data"][0])
+
+// Modification of nested structure
+table[0]["data"].append(25)
+print("Updated Row 1 Data:", table[0]["data"])
+
+// Dict of lists of dicts
+var complex = {
+    "users": [
+        {"name": "A", "roles": ["admin", "editor"]},
+        {"name": "B", "roles": ["viewer"]}
+    ]
+}
+
+print("User A first role:", complex["users"][0]["roles"][0])

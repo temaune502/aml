@@ -1,0 +1,71 @@
+import_py {
+    plugins.pro_automation as auto,
+    console
+}
+
+meta {
+    entry: "main"
+}
+
+func main() {
+    console.print_line("--- Pro Automation Demo ---")
+    
+    // 1. Пошук вікна (наприклад, Блокнот)
+    console.print_line("Шукаємо вікно Notepad...")
+    var windows = auto.find_windows("Notepad")
+    
+    if (len(windows) > 0) {
+        var hwnd = windows[0]
+        var title = auto.get_window_title(hwnd)
+        console.print_line("Знайдено вікно: " + title)
+        
+        // Активуємо вікно
+        auto.activate_window(hwnd)
+        auto.sleep(500)
+        
+        // Переміщуємо та змінюємо розмір
+        console.print_line("Переміщуємо вікно...")
+        auto.move_window(hwnd, 100, 100, 800, 600)
+        auto.sleep(500)
+        
+        // Отримуємо координати
+        var rect = auto.get_window_rect(hwnd)
+        console.print_line("Координати вікна: " + str(rect))
+        
+        // Друкуємо текст
+        console.print_line("Друкуємо текст...")
+        auto.type_text("Hello from AML Pro Automation!")
+        auto.key_press(auto.VK_RETURN)
+        auto.type_text("This is advanced automation.")
+        
+        // Гарячі клавіші (Ctrl+S - зберегти, але ми просто натиснемо Esc)
+        auto.key_press(auto.VK_ESCAPE)
+    } else {
+        console.print_line("Вікно Notepad не знайдено. Відкрийте його для тесту.")
+    }
+    
+    // 2. Робота з мишею
+    console.print_line("Демонстрація миші...")
+    var pos = auto.get_mouse_pos()
+    console.print_line("Поточна позиція миші: " + str(pos))
+    
+    // Плавне переміщення
+    console.print_line("Плавне переміщення миші...")
+    auto.mouse_move_to(500, 500, true)
+    
+    // Отримання кольору пікселя
+    var color = auto.get_pixel_color(500, 500)
+    console.print_line("Колір пікселя в (500, 500): " + str(color))
+    
+    // Прокрутка
+    console.print_line("Прокрутка коліщатком...")
+    auto.mouse_scroll(-3) // Вниз
+    auto.sleep(500)
+    auto.mouse_scroll(3)  // Вгору
+    
+    // Звуковий сигнал
+    console.print_line("Сигнал завершення...")
+    auto.beep(750, 300)
+    
+    console.print_line("--- Демо завершено ---")
+}

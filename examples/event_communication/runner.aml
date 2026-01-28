@@ -1,0 +1,28 @@
+// Головний файл для запуску комунікації між сервісами
+import_py { plugins.console_utils }
+const std = import("temaune\std")
+func main() {
+    console_utils.print_line("=== Тестування міжфайлової комунікації через події ===")
+    
+    var service_a = import("event_communication/service_a")
+    var service_b = import("event_communication/service_b")
+    
+    // Ініціалізація сервісів
+    service_a.init()
+    service_b.init()
+    
+    console_utils.print_line("--- Початок обміну повідомленнями ---")
+    
+    // Сервіс Б надсилає пінг
+    service_b.send_ping("Привіт від Сервісу Б!")
+    
+    console_utils.print_line("--- Очікування завершення асинхронних подій ---")
+    // В нашому випадку все синхронно через EventSystem
+    
+    console_utils.print_line("=== Тест завершено ===")
+}
+
+main()
+while (True){
+    std.base.wait(1)
+}

@@ -1,0 +1,33 @@
+import_py { console }
+
+func greet(name, greeting = "Hello") {
+    console.print_line(greeting + ", " + name + "!")
+}
+
+// 1. Missing required argument
+try {
+    greet()
+} catch {
+    console.print_line("Caught expected error: " + error)
+}
+
+// 2. Unknown keyword argument
+try {
+    greet(name="Alice", age=30)
+} catch {
+    console.print_line("Caught expected error: " + error)
+}
+
+// 3. Multiple values for same argument
+try {
+    greet("Alice", name="Bob")
+} catch {
+    console.print_line("Caught expected error: " + error)
+}
+
+// 4. Too many positional arguments
+try {
+    greet("Alice", "Hi", "Extra")
+} catch {
+    console.print_line("Caught expected error: " + error)
+}

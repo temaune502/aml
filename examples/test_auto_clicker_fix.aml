@@ -1,0 +1,32 @@
+// test_auto_clicker_fix.aml
+import_py {
+  console,
+  plugins\pro_automation as mouse,
+  base
+}
+
+namespace auto_clicker {
+  var interval_sec = 1  // Малий інтервал для тесту
+  var clicks_per_cycle = 3 // 3 кліки за цикл
+
+  func main() {
+    console.print_line("Запуск Auto Clicker Test...")
+    var cycle = 0
+    while (cycle < 2) {
+      cycle = cycle + 1
+      var count = 0
+      console.print_line("Цикл " + cycle + ", клікаємо " + clicks_per_cycle + " разів")
+      while (count < clicks_per_cycle) {
+        count = count + 1
+        console.print_line("  Клік " + count)
+        // mouse.click_mouse() // Можна закоментувати для тесту без реальних кліків
+        base.wait(0.1)
+      }
+      console.print_line("Чекаю " + interval_sec + " секунд...")
+      base.wait(interval_sec)
+    }
+    console.print_line("Тест завершено")
+  }
+}
+
+auto_clicker.main()

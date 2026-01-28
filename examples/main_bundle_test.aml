@@ -1,0 +1,4 @@
+var lib = import("lib")
+print("Main starting...")
+lib.hello()
+print("Main finished.")

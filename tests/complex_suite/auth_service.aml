@@ -1,0 +1,36 @@
+import_aml { 
+    tests\complex_suite\config,
+    tests\complex_suite\logger
+}
+
+namespace Auth {
+    var current_user = null
+    var session_token = null
+    
+    func login(user, password) {
+        Log.info("Attempting login for " + user)
+        if (user == "admin" && password == "secret") {
+            current_user = user
+            session_token = "TOKEN_123"
+            Log.info("Login successful")
+            return True
+        }
+        Log.error("Login failed for " + user)
+        return False
+    }
+    
+    func logout() {
+        if (current_user != null) {
+            Log.info("User " + current_user + " logged out")
+            current_user = null
+            session_token = null
+        }
+    }
+    
+    func check_permission(perm) {
+        if (current_user == "admin") {
+            return True
+        }
+        return False
+    }
+}

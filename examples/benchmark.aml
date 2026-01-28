@@ -1,0 +1,14 @@
+// benchmark.aml
+func main() {
+    var i = 0
+    var start = 0
+    var end = 100000
+    
+    print("Starting benchmark: 100,000 iterations...")
+    while (i < end) {
+        i = i + 1
+    }
+    print("Benchmark finished. Final i: " + i)
+}
+
+main()

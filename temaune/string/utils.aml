@@ -1,0 +1,119 @@
+// Модуль для роботи з рядками
+import_py { base }
+
+// Перевіряє, чи містить рядок підрядок
+func contains(s, sub) {
+    return base.string_contains(s, sub)
+}
+
+// Розбиває рядок на список за роздільником
+func split(s, sep=" ") {
+    return base.string_split(s, sep)
+}
+
+// Об'єднує список рядків у один рядок за допомогою роздільника
+func join(lst, sep="") {
+    return base.join_strings(lst, sep)
+}
+
+// Видаляє пробіли з початку та кінця рядка
+func trim(s) {
+    return base.string_trim(s)
+}
+
+// Переводить рядок у верхній регістр
+func upper(s) {
+    return base.string_upper(s)
+}
+
+// Переводить рядок у нижній регістр
+func lower(s) {
+    return base.string_lower(s)
+}
+
+// Перевіряє, чи починається рядок з вказаного префікса
+func starts_with(s, prefix) {
+    return base.starts_with(s, prefix)
+}
+
+// Перевіряє, чи закінчується рядок вказаним суфіксом
+func ends_with(s, suffix) {
+    return base.ends_with(s, suffix)
+}
+
+// Повертає довжину рядка
+func length(s) {
+    return base.lenn(s)
+}
+
+// Перевіряє, чи є рядок порожнім
+func is_empty(s) {
+    return length(s) == 0
+}
+
+// Замінює всі входження підрядка на новий підрядок
+func replace(s, old, new) {
+    // В AML немає вбудованого replace, але ми можемо використати python base
+    return base.string_replace(s, old, new)
+}
+
+// Робить першу літеру рядка великою
+func capitalize(s) {
+    if (is_empty(s)) { return s }
+    var first_char = upper(base.string_slice(s, 0, 1))
+    var rest = base.string_slice(s, 1)
+    return first_char + rest
+}
+
+// Повторює рядок n разів
+func repeat(s, n) {
+    var res = ""
+    var i = 0
+    while (i < n) {
+        res = res + s
+        i = i + 1
+    }
+    return res
+}
+
+// Доповнює рядок зліва символом до вказаної довжини
+func pad_left(s, n, char=" ") {
+    var l = length(s)
+    if (l >= n) { return s }
+    return repeat(char, n - l) + s
+}
+
+// Доповнює рядок справа символом до вказаної довжини
+func pad_right(s, n, char=" ") {
+    var l = length(s)
+    if (l >= n) { return s }
+    return s + repeat(char, n - l)
+}
+
+// Повертає індекс першого входження підрядка (або -1)
+func index_of(s, sub) {
+    return base.string_find(s, sub)
+}
+
+// Перевіряє, чи складається рядок лише з цифр
+func is_digit(s) {
+    return base.string_isdigit(s)
+}
+
+// Перевіряє, чи складається рядок лише з літер
+func is_alpha(s) {
+    return base.string_isalpha(s)
+}
+
+// Повертає рядок у зворотному порядку
+func reverse(s) {
+    // AML strings are immutable, but we can build a new one
+    var res = ""
+    var l = length(s)
+    var i = l - 1
+    while (i >= 0) {
+        res = res + base.string_slice(s, i, i + 1)
+        i = i - 1
+    }
+    return res
+}

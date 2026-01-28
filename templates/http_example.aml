@@ -1,0 +1,7 @@
+import_py{
+  http,
+  console,
+  base
+}
+var res = http.get("https://example.com")
+console.print_line(base.to_str(res))

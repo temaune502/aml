@@ -1,0 +1,26 @@
+// Тест для list comprehensions
+
+var numbers = [1, 2, 3, 4, 5, 6]
+
+// Просте перетворення
+var squares = [x * x for x in numbers]
+print("Числа: " + str(numbers))
+print("Квадрати: " + str(squares))
+
+// З фільтрацією
+var even_squares = [x * x for x in numbers if x % 2 == 0]
+print("Квадрати парних чисел: " + str(even_squares))
+
+// Робота з рядками
+var words = ["apple", "banana", "cherry", "date"]
+var short_words = [w for w in words if len(w) <= 5]
+print("Слова: " + str(words))
+print("Короткі слова: " + str(short_words))
+
+// Вкладеність (внутрішня частина - це просто вираз)
+var matrix = [[1, 2], [3, 4], [5, 6]]
+// var flattened = [val for row in matrix for val in row] // Поки що не підтримується декілька 'for'
+// Перевіримо, чи працює один рівень
+var first_elements = [row[0] for row in matrix]
+print("Матриця: " + str(matrix))
+print("Перші елементи: " + str(first_elements))

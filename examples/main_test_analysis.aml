@@ -1,0 +1,15 @@
+// import_aml { math_lib, }
+import_py {
+    base as b,
+    console as c
+}
+var x = 10
+var y = 20
+var z = null
+// Test assignment to undeclared
+z = x + y
+
+// var res = math.add(x, y) 
+// var s = sub(x, y) 
+
+c.print_line("Result: " + b.to_str(x))

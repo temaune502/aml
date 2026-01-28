@@ -1,0 +1,24 @@
+import_py{
+    base,
+    console
+}
+
+
+namespace a {
+    var first = "kill all programer"
+    func main(){
+        console.print_colored("hello", "red")
+        return "aaa"
+    }
+    namespace b {
+    var bfirst = "kill all programer"
+    func bmain(){
+        console.print_colored(bfirst, "red")
+        return "aaa"
+    }
+}
+}
+a.main()
+console.print_line(a.b.bfirst)
+console.print_colored(a.first, "green")
+

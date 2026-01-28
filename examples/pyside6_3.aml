@@ -1,0 +1,10 @@
+import_py { 
+    PySide6.QtWidgets
+    sys
+    functools
+}
+var app = QtWidgets.QApplication(sys.argv)
+var window = QtWidgets.QWidget()
+var info = functools.partial(QtWidgets.QMessageBox.information, window, "Повідомлення", "Вітаю!")
+
+var msgBtn = QtWidgets.QPushButton("Показати повідомлення")

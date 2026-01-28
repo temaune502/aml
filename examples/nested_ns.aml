@@ -1,0 +1,26 @@
+import_py {
+    base,
+    console
+}
+func say_hello(name){
+    return "Hello" + " " + base.to_str(name)
+}
+import_aml {
+    import_example,
+    v2
+}
+namespace a {
+    namespace b {
+        func main() {
+            console.print_line("nested ok")
+            return 123
+        }
+    }
+}
+
+a.b.main()
+var some_vars = ["1","2","3","4","5"]
+for i in some_vars {
+    console.print_line(i)
+}
+func1()

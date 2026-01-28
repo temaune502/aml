@@ -1,0 +1,10 @@
+import_py { console }
+
+func add(a, b = 1 + 2) {
+    console.print_line("a=" + a + ", b=" + b)
+}
+
+add(10)
+add(10, 20)
+add(a=5)
+add(a=5, b=15)

@@ -1,0 +1,7 @@
+import_py {
+    plugins\pro_automation\input,
+    plugins\pro_automation\system,
+    console
+}
+system.beep(1500,2000)
+console.print_line(str(input.get_mouse_pos()))

@@ -1,0 +1,50 @@
+print("--- Comprehensive Error Scenarios ---")
+
+func test_error(msg, fn) {
+    try {
+        print("Testing: " + msg)
+        fn()
+        print("  Status: FAILED (No error raised)")
+    } catch (e) {
+        print("  Status: PASSED (Caught: " + str(e) + ")")
+    }
+}
+func func1() {
+    print(undefined_var_xyz)
+}
+// 1. Undefined variable
+test_error("Undefined variable", func1)
+
+// 2. Reassigning constant
+const FIXED = 1
+func  func2() {
+    FIXED = 2
+}
+test_error("Reassigning constant", func2)
+
+// 3. Calling non-function
+var not_a_func = 123
+func func3() {
+    not_a_func()
+}
+test_error("Calling non-function", func3)
+
+// 4. Accessing attribute of non-object
+var num = 10
+func  func4() {
+    print(num.non_existent)
+}
+test_error("Attribute of number", func4)
+
+// 5. Index out of bounds
+var arr = [1]
+func func5() {
+    print(arr[5])
+}
+test_error("Index out of bounds", func5)
+
+// 6. Import non-existent module
+func func6() {
+    import_aml { non_existent_module_99 }
+}
+test_error("Import non-existent", func6)

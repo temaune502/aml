@@ -1,0 +1,65 @@
+// AML SDK Demo
+import_aml { sdk/init }
+import_py {base}
+meta {entry: "main"}
+func main() {
+    print("--- AML SDK Demo ---")
+    print("Status: " + core.get_status())
+    
+    var size = ui.get_screen_size()
+    print("Screen size: " + str(size))
+    
+    print("Current time: " + utils.now())
+    
+    // Test random from utils
+    var r = utils.random_int(1, 100)
+    print("Random number (1-100): " + str(r))
+    
+    // Test file operations
+    var test_file = "temp_sdk_test.json"
+    var test_data = {
+        "user": "Developer",
+        "action": "Testing SDK",
+        "timestamp": utils.timestamp()
+    }
+    
+    print("Writing JSON to " + test_file)
+    files.write_json(test_file, test_data)
+    
+    if (files.exists(test_file)) {
+        print("File exists, reading back...")
+        var read_data = files.read_json(test_file)
+        print("Read user: " + read_data["user"])
+        files.delete(test_file)
+        print("Test file deleted.")
+    }
+    
+    // Test mouse movement (simulated/human-like)
+    print("Simulating mouse movement to (500, 500)...")
+    core.move(500, 500)
+    
+    // Test retry utility
+    var counter = 0
+    func flaky_task() {
+        counter = counter + 1
+        if (counter < 3) {
+            print("Transient error")
+        }
+        return "Success on attempt " + str(counter)
+    }
+    
+    print("Testing retry mechanism...")
+    var result = utils.retry(@flaky_task, max_attempts=5, delay=0.1)
+    print("Retry result: " + result)
+    
+    // Register a periodic task
+    func heartbeat() {
+        if (spec.tick == 20) {
+            print("Heartbeat: second passed")
+        }
+    }
+    events.start_periodic_task(@heartbeat, 20)
+    
+    print("SDK Demo finished. Waiting 2 seconds for heartbeat...")
+    wait(0.1)
+}

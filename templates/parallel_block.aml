@@ -1,0 +1,22 @@
+import_py { console, base }
+
+// Шаблон паралельного виконання викликів
+namespace app {
+  func worker(msg) {
+    console.print_line("WORKER: " + msg)
+    base.sleep_ms(250)
+  }
+  func main() {
+    console.print_line("MAIN START")
+    // невелика пауза, щоб побачити вивід воркерів
+    base.sleep_ms(400)
+    console.print_line("MAIN DONE")
+  }
+}
+
+parallel {
+  app.worker("A")
+  app.worker("B")
+}
+
+meta { entry: "app.main" }

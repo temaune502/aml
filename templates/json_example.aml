@@ -1,0 +1,32 @@
+// Шаблон: JSON парсинг і серіалізація
+
+import_py {
+  console,
+  plugins\json,
+  plugins\file,
+  base
+}
+
+namespace json_demo {
+  func main() {
+    var text = "{\"name\": \"AML\", \"version\": 1, \"tags\": [\"dsl\", \"examples\"]}"
+    var obj = json.parse(text)
+    console.print_line("name: " + obj["name"])
+    console.print_line("version: " + obj["version"])
+
+    obj["active"] = True
+    var as_text = json.stringify(obj, 2)
+    console.print_line("JSON:\n" + as_text)
+
+    var out_dir = "data_json"
+    file.make_dir(out_dir)
+    var out_path = file.path_join(out_dir, "info.json")
+    json.write_json(out_path, obj, 2)
+    console.print_line("Записано у: " + out_path)
+
+    var read_back = json.read_json(out_path)
+    console.print_line("Зчитано name: " + read_back["name"])
+  }
+}
+
+json_demo.main()
